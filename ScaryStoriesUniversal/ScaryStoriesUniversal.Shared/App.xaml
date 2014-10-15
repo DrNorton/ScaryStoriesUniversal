@@ -1,0 +1,13 @@
+﻿<micro:CaliburnApplication
+    x:Class="ScaryStoriesUniversal.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:micro="using:Caliburn.Micro">
+    <micro:CaliburnApplication.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ScaryStoriesStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </micro:CaliburnApplication.Resources>
+</micro:CaliburnApplication>

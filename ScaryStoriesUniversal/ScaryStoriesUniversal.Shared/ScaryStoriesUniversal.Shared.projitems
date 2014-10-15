@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>92f06635-d268-4be6-a0ae-40d387100637</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ScaryStoriesUniversal</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Database\DataAccess\DbConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\DataAccess\IDbConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Entities\Category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Entities\History.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Entities\IDetail.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Entities\Source.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Entities\Story.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Repositories\Base\ICategoryRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Repositories\Base\IStoryRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Repositories\CategoryRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Repositories\StoryRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\sql\SQLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\sql\SQLiteAsync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)ScaryStoriesStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

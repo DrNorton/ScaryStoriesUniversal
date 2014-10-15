@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[Sources]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [Name] NVARCHAR(50) NOT NULL, 
+    [Image] IMAGE NULL, 
+    [Url] NVARCHAR(250) NULL,
+	[CreatedAt] DATETIMEOFFSET NULL, 
+    [Deleted] BIT NULL, 
+    [UpdatedAt] DATETIMEOFFSET NULL, 
+    [Version] VARBINARY(50) NULL
+)

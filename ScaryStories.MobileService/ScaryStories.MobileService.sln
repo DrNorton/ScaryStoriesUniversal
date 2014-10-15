@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScaryStories.MobileService", "ScaryStories.MobileService\ScaryStories.MobileService.csproj", "{756E7FCF-10A1-4ED0-A668-09DCC1EB10D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScaryStories.MobileService.Entity", "ScaryStories.MobileService.Entity\ScaryStories.MobileService.Entity.csproj", "{D0625F62-2F9D-4B23-9F11-6A79BEB5EC2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{756E7FCF-10A1-4ED0-A668-09DCC1EB10D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{756E7FCF-10A1-4ED0-A668-09DCC1EB10D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{756E7FCF-10A1-4ED0-A668-09DCC1EB10D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{756E7FCF-10A1-4ED0-A668-09DCC1EB10D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0625F62-2F9D-4B23-9F11-6A79BEB5EC2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0625F62-2F9D-4B23-9F11-6A79BEB5EC2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0625F62-2F9D-4B23-9F11-6A79BEB5EC2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0625F62-2F9D-4B23-9F11-6A79BEB5EC2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
