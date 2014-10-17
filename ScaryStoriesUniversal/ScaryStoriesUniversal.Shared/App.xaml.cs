@@ -34,6 +34,12 @@ namespace ScaryStoriesUniversal
             _container = new WinRTContainer();
             _container.RegisterWinRTServices();
             _container.PerRequest<MainViewModel>();
+             InitDatabase();
+          
+        }
+
+        private  async void InitDatabase()
+        {
             var dbPath = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "scaryStories.sqlite");
             await InitializeDatabaseAndRegisterDbConnection(dbPath);
             InitializeRepositories();

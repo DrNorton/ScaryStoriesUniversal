@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScaryStories.MobileService"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScaryStories.MobileService.Entity", "ScaryStories.MobileService.Entity\ScaryStories.MobileService.Entity.csproj", "{D0625F62-2F9D-4B23-9F11-6A79BEB5EC2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScaryStoriesUniversal.Dtos", "..\ScaryStoriesUniversal.Dtos\ScaryStoriesUniversal.Dtos.csproj", "{E42A323B-56F1-4DEA-B775-C875887B3358}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D0625F62-2F9D-4B23-9F11-6A79BEB5EC2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0625F62-2F9D-4B23-9F11-6A79BEB5EC2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0625F62-2F9D-4B23-9F11-6A79BEB5EC2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E42A323B-56F1-4DEA-B775-C875887B3358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E42A323B-56F1-4DEA-B775-C875887B3358}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E42A323B-56F1-4DEA-B775-C875887B3358}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E42A323B-56F1-4DEA-B775-C875887B3358}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

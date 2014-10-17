@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using ScaryStories.MobileService.Entity;
+using ScaryStoriesUniversal.Dtos;
 
 namespace ScaryStories.MobileService.Controllers
 {
+    [RoutePrefix("api/Source")]
     public class SourceController:ApiController
     {
         private ScaryStoriesContext _context;
@@ -20,9 +22,10 @@ namespace ScaryStories.MobileService.Controllers
         }
 
         // GET tables/TodoItem
-        public IQueryable<SourceDto> GetAll()
+        [Route("GetItems")]
+        public IQueryable<SourceResponse> GetItems()
         {
-            return _context.Sources.Select(x => new SourceDto()
+            return _context.Sources.Select(x => new SourceResponse()
             {
                 CreatedAt = x.CreatedAt,
                 Deleted = x.Deleted,

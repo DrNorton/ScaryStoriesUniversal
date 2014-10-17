@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ScaryStories.MobileService.Dtos
+namespace ScaryStoriesUniversal.Dtos
 {
-    public class EntityDto
+    public class BaseResponse
     {
         public DateTimeOffset? CreatedAt { get; set; }
         public bool? Deleted { get; set; }

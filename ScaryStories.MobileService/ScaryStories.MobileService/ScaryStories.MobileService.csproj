@@ -229,11 +229,6 @@
     <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\SourceController.cs" />
     <Compile Include="Controllers\StoryController.cs" />
-    <Compile Include="Dtos\CategoryDto.cs" />
-    <Compile Include="Dtos\Entity.cs" />
-    <Compile Include="Dtos\PhotoDto.cs" />
-    <Compile Include="Dtos\SourceDto.cs" />
-    <Compile Include="Dtos\StoryDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -265,6 +260,10 @@
     <None Include="Properties\PublishProfiles\StoriesMobileService - FTP.pubxml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ScaryStoriesUniversal.Dtos\ScaryStoriesUniversal.Dtos.csproj">
+      <Project>{e42a323b-56f1-4dea-b775-c875887b3358}</Project>
+      <Name>ScaryStoriesUniversal.Dtos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ScaryStories.MobileService.Entity\ScaryStories.MobileService.Entity.csproj">
       <Project>{d0625f62-2f9d-4b23-9f11-6a79beb5ec2b}</Project>
       <Name>ScaryStories.MobileService.Entity</Name>

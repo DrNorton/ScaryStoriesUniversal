@@ -7,9 +7,11 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using Microsoft.WindowsAzure.Mobile.Service;
 using ScaryStories.MobileService.Entity;
+using ScaryStoriesUniversal.Dtos;
 
 namespace ScaryStories.MobileService.Controllers
 {
+    [RoutePrefix("api/Photo")]
     public class PhotoController : ApiController
     {
         private ScaryStoriesContext _context;
@@ -20,22 +22,23 @@ namespace ScaryStories.MobileService.Controllers
             _context = new ScaryStoriesContext();
         }
 
-        public IQueryable<PhotoDto> GetAll(int limit, int offset)
+        [Route("GetItems")]
+        public IQueryable<PhotoResponse> GetItems(int limit, int offset)
         {
-            return _context.Photos.OrderBy(x => x.Id).Skip(offset).Take(limit).Select(x => new PhotoDto()
+            return _context.Photos.OrderBy(x => x.Id).Skip(offset).Take(limit).Select(x => new PhotoResponse()
             {
                 CreatedAt = x.CreatedAt,
                 Deleted = x.Deleted,
                 UpdatedAt = x.UpdatedAt,
                 Version = x.Version,
                 Id = x.Id,
-                Thumb = x.Thumb
+                Thumb = x.Thumb 
             });
         }
-
-        public IQueryable<PhotoDto> Get(string photoId)
+        [Route("GetItem")]
+        public PhotoResponse GetItem(string photoId)
         {
-            return _context.Photos.Where(x=>x.Id.ToString().Equals(photoId)).Select(x => new PhotoDto()
+            return _context.Photos.Where(x => x.Id.ToString().Equals(photoId)).Select(x => new PhotoResponse()
             {
                 CreatedAt = x.CreatedAt,
                 Deleted = x.Deleted,
@@ -45,7 +48,7 @@ namespace ScaryStories.MobileService.Controllers
                 Thumb = x.Thumb,
                 Image = x.Image
                
-            });
+            }).FirstOrDefault();
         }
 
     }

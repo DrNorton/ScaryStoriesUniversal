@@ -1,13 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Controllers;
-using System.Web.Http.OData;
-using Microsoft.WindowsAzure.Mobile.Service;
-using ScaryStories.MobileService.Dtos;
 using ScaryStories.MobileService.Entity;
-using ScaryStories.MobileService.Entity.Entities;
+using ScaryStoriesUniversal.Dtos;
 
 
 namespace ScaryStories.MobileService.Controllers
@@ -26,10 +21,10 @@ namespace ScaryStories.MobileService.Controllers
         }
 
         // GET tables/TodoItem
-
-        public IQueryable<StoryDto> GetAll(int limit,int offset)
+        [Route("GetItems")]
+        public IQueryable<StoryResponse> GetItems(int limit,int offset)
         {
-            return _context.Stories.OrderBy(x=>x.Id).Skip(offset).Take(limit).Select(x=>new StoryDto()
+            return _context.Stories.OrderBy(x=>x.Id).Skip(offset).Take(limit).Select(x=>new StoryResponse()
             {
                 CreatedAt = x.CreatedAt,
                 Deleted = x.Deleted,
@@ -38,16 +33,16 @@ namespace ScaryStories.MobileService.Controllers
                 CategoryId = x.CategoryId,
                 Id = x.Id,
                 Name = x.Name,
-                Photo = new PhotoDto() { Thumb = x.Photo.Thumb},
+                Photo = new PhotoResponse() { Thumb = x.Photo.Thumb},
                 Text = x.Text,
                 Url = x.Text
             });
         }
 
-        [Route("bycategory")]
-        public IQueryable<StoryDto> GetByCategoryId(string categoryId,int limit,int offset)
+        [Route("ByCategory")]
+        public IQueryable<StoryResponse> GetByCategoryId(string categoryId, int limit, int offset)
         {
-            return _context.Stories.Where(x => x.CategoryId.ToString().Equals(categoryId)).OrderBy(x => x.Id).Skip(offset).Take(limit).Select(x => new StoryDto()
+            return _context.Stories.Where(x => x.CategoryId.ToString().Equals(categoryId)).OrderBy(x => x.Id).Skip(offset).Take(limit).Select(x => new StoryResponse()
             {
                 CreatedAt = x.CreatedAt,
                 Deleted = x.Deleted,
@@ -56,16 +51,16 @@ namespace ScaryStories.MobileService.Controllers
                 CategoryId = x.CategoryId,
                 Id = x.Id,
                 Name = x.Name,
-                Photo = new PhotoDto() { Thumb = x.Photo.Thumb },
+                Photo = new PhotoResponse() { Thumb = x.Photo.Thumb },
                 Text = x.Text,
                 Url = x.Text
             }); ;
         }
 
-        [Route("bysource")]
-        public IQueryable<StoryDto> GetBySourceId(string sourceId, int limit, int offset)
+        [Route("BySource")]
+        public IQueryable<StoryResponse> GetBySourceId(string sourceId, int limit, int offset)
         {
-            return _context.Stories.Where(x => x.SourceId.ToString().Equals(sourceId)).OrderBy(x => x.Id).Skip(offset).Take(limit).Select(x => new StoryDto()
+            return _context.Stories.Where(x => x.SourceId.ToString().Equals(sourceId)).OrderBy(x => x.Id).Skip(offset).Take(limit).Select(x => new StoryResponse()
             {
                 CreatedAt = x.CreatedAt,
                 Deleted = x.Deleted,
@@ -74,16 +69,16 @@ namespace ScaryStories.MobileService.Controllers
                 CategoryId = x.CategoryId,
                 Id = x.Id,
                 Name = x.Name,
-                Photo = new PhotoDto() { Thumb = x.Photo.Thumb },
+                Photo = new PhotoResponse() { Thumb = x.Photo.Thumb },
                 Text = x.Text,
                 Url = x.Text
             }); ;
         }
 
-
-        public StoryDto Get(string storyId)
+        [Route("GetItem")]
+        public StoryResponse GetItem(string storyId)
         {
-            return _context.Stories.Where(x => x.Id.ToString().Equals(storyId)).OrderBy(x => x.Id).Select(x => new StoryDto()
+            return _context.Stories.Where(x => x.Id.ToString().Equals(storyId)).OrderBy(x => x.Id).Select(x => new StoryResponse()
             {
                 CreatedAt = x.CreatedAt,
                 Deleted = x.Deleted,
@@ -92,7 +87,7 @@ namespace ScaryStories.MobileService.Controllers
                 CategoryId = x.CategoryId,
                 Id = x.Id,
                 Name = x.Name,
-                Photo = new PhotoDto() { Image = x.Photo.Image },
+                Photo = new PhotoResponse() { Image = x.Photo.Image },
                 Text = x.Text,
                 Url = x.Text
             }).FirstOrDefault(); ;
