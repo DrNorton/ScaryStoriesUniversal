@@ -40,7 +40,8 @@ namespace ScaryStories.MobileService.Entity
         [MaxLength(50)]
         public byte[] Version { get; set; }
 
-          [JsonIgnore] 
+          [JsonIgnore]
+          [ForeignKey("Id")]
         public virtual ICollection<Story> Stories { get; set; }
     }
 }

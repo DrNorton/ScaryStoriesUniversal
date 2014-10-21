@@ -1,3 +1,5 @@
+using System.Data.Entity.ModelConfiguration.Conventions;
+
 namespace ScaryStories.MobileService.Entity
 {
     using System;
@@ -23,6 +25,7 @@ namespace ScaryStories.MobileService.Entity
             //    .HasMany(e => e.Stories)
             //    .WithRequired(e => e.Category)
             //    .WillCascadeOnDelete(false);
+       
 
             modelBuilder.Entity<Photo>()
                 .HasMany(e => e.Stories)

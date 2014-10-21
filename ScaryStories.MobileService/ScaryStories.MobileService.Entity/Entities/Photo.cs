@@ -1,3 +1,4 @@
+using Microsoft.WindowsAzure.Mobile.Service;
 using Newtonsoft.Json;
 
 namespace ScaryStories.MobileService.Entity
@@ -8,14 +9,13 @@ namespace ScaryStories.MobileService.Entity
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Photo
+    public  class Photo:EntityData
     {
         public Photo()
         {
             Stories = new HashSet<Story>();
         }
 
-        public Guid Id { get; set; }
 
         [Column(TypeName = "image")]
         public byte[] Image { get; set; }
@@ -23,15 +23,8 @@ namespace ScaryStories.MobileService.Entity
         [Column(TypeName = "image")]
         public byte[] Thumb { get; set; }
 
-        public DateTimeOffset? CreatedAt { get; set; }
-
-        public bool? Deleted { get; set; }
-
-        public DateTimeOffset? UpdatedAt { get; set; }
-
-        [MaxLength(50)]
-        public byte[] Version { get; set; }
-          [JsonIgnore] 
+          [JsonIgnore]
+          [ForeignKey("Id")]
         public virtual ICollection<Story> Stories { get; set; }
     }
 }
