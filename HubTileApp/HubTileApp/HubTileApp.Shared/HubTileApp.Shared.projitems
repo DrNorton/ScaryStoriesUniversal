@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>cbc34930-95b6-4b83-84c4-e2fc3a61376a</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>HubTileApp</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\SampleDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HubControl\HubControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="$(MSBuildThisFileDirectory)DataModel\SampleData.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LightGray.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MediumGray.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\DarkGray.png" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\NavigationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\ApplicationBar.settings.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Beignets.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Copenhagen.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Dessert.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Fruits.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Movie.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Neuschwanstein.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Paris.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Person.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Pretzel.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Search.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Seattle.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Shrimp.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\SteakSandwich.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Venice.jpg" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

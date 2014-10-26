@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="56fe349309fa40f58ffac5a821b63a72" Name="Diagram1">
+        <EntityTypeShape EntityType="StoriesMobileService_dbModel.Category" Width="1.5" PointX="0.75" PointY="6.375" />
+        <EntityTypeShape EntityType="StoriesMobileService_dbModel.Photo" Width="1.5" PointX="0.75" PointY="9.875" />
+        <EntityTypeShape EntityType="StoriesMobileService_dbModel.Source" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="StoriesMobileService_dbModel.Story" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="StoriesMobileService_dbModel.FK_Stories_Categories" />
+        <AssociationConnector Association="StoriesMobileService_dbModel.FK_Stories_ToPhoto" />
+        <AssociationConnector Association="StoriesMobileService_dbModel.FK_Stories_Sources" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
