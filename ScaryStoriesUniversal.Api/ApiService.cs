@@ -5,14 +5,18 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
-
-using ScaryStoriesUniversal.Dtos;
+using Microsoft.WindowsAzure.MobileServices.Sync;
+using ScaryStoriesUniversal.Api.Entities;
 
 namespace ScaryStoriesUniversal.Api
 {
-    public class ApiService
+    public class ApiService : IApiService
     {
         private MobileServiceClient _serviceClient;
+        private IMobileServiceTable<Story> _storyTable;
+        private IMobileServiceTable<Category> _categoryTable;
+        private IMobileServiceTable<Source> _sourceTable;
+        private IMobileServiceTable<Photo> _photoTable;
 
         public ApiService(string url,string key)
         {
@@ -24,72 +28,57 @@ namespace ScaryStoriesUniversal.Api
             {
                 _serviceClient = new MobileServiceClient(url, key);
             }
+            _storyTable = _serviceClient.GetTable<Story>();
+            _categoryTable = _serviceClient.GetTable<Category>();
+            _sourceTable = _serviceClient.GetTable<Source>();
+            _photoTable = _serviceClient.GetTable<Photo>();
+        }
+
+       
+
+        public MobileServiceClient ServiceClient
+        {
+            get { return _serviceClient; }
+        }
+
+        public  async Task<IEnumerable<Story>> GetStories(int limit, int offset)
+        {
+            return await _storyTable.OrderBy(x => x.CreatedAt).Skip(offset).Take(limit).ToCollectionAsync();
+        }
+
+        public async Task<IEnumerable<Story>> GetByCategory(Guid categoryId,int limit, int offset)
+        {
+            return await _storyTable.Where(x => x.CategoryId.ToString() == categoryId.ToString()).OrderBy(x => x.CreatedAt).Take(limit).Skip(offset).ToCollectionAsync();
+        }
+
+        public async Task<IEnumerable<Story>> GetBySourceId(Guid sourceId, int limit, int offset)
+        {
+            return await _storyTable.Where(x => x.SourceId.ToString() == sourceId.ToString()).OrderBy(x => x.CreatedAt).Take(limit).Skip(offset).ToCollectionAsync(); ;
+        }
+
+        public Task<Story> GetStory(Guid storyId)
+        {
+            return  _storyTable.LookupAsync(storyId);
+        }
+
+        public async Task<IEnumerable<Category>> GetCategories()
+        {
+            return await _categoryTable.Take(100).ToCollectionAsync();
+        }
+
+        public async Task<IEnumerable<Source>> GetSources()
+        {
+            return await _sourceTable.Take(100).ToCollectionAsync();
             
         }
 
-        public  Task<IEnumerable<StoryResponse>> GetStories(int limit, int offset)
+        public async Task<IEnumerable<Photo>> GetPhotos(int limit, int offset)
         {
-            var pars = new Dictionary<string, string>();
-            pars.Add("limit", limit.ToString());
-            pars.Add("offset", offset.ToString());
-
-            return _serviceClient.InvokeApiAsync<IEnumerable<StoryResponse>>("Story/GetItems", HttpMethod.Get, pars);
+            return await _photoTable.OrderBy(x => x.CreatedAt).Skip(offset).Take(limit).ToCollectionAsync();
         }
-
-        public Task<IEnumerable<StoryResponse>> GetByCategory(Guid categoryId,int limit, int offset)
+        public Task<Photo> GetPhoto(Guid storyId)
         {
-            var pars = new Dictionary<string, string>();
-            pars.Add("categoryId", categoryId.ToString());
-            pars.Add("limit", limit.ToString());
-            pars.Add("offset", offset.ToString());
-
-            return _serviceClient.InvokeApiAsync<IEnumerable<StoryResponse>>("Story/ByCategory", HttpMethod.Get, pars);
-        }
-
-        public Task<IEnumerable<StoryResponse>> GetBySourceId(Guid sourceId, int limit, int offset)
-        {
-            var pars = new Dictionary<string, string>();
-            pars.Add("sourceId", sourceId.ToString());
-            pars.Add("limit", limit.ToString());
-            pars.Add("offset", offset.ToString());
-
-            return _serviceClient.InvokeApiAsync<IEnumerable<StoryResponse>>("Story/BySource", HttpMethod.Get, pars);
-        }
-
-        public Task<StoryResponse> GetStory(Guid storyId)
-        {
-            var pars = new Dictionary<string, string>();
-            pars.Add("storyId", storyId.ToString());
-
-
-            return _serviceClient.InvokeApiAsync<StoryResponse>("Story/GetItem", HttpMethod.Get, pars);
-        }
-
-        public Task<IEnumerable<CategoryResponse>> GetCategories()
-        {
-            return _serviceClient.InvokeApiAsync<IEnumerable<CategoryResponse>>("Category/GetItems",HttpMethod.Get,new Dictionary<string, string>());
-        }
-
-        public Task<IEnumerable<SourceResponse>> GetSources()
-        {
-            return _serviceClient.InvokeApiAsync<IEnumerable<SourceResponse>>("Source/GetItems", HttpMethod.Get, new Dictionary<string, string>());
-        }
-
-        public Task<IEnumerable<PhotoResponse>> GetPhotos(int limit, int offset)
-        {
-            var pars = new Dictionary<string, string>();
-            pars.Add("limit", limit.ToString());
-            pars.Add("offset", offset.ToString());
-
-            return _serviceClient.InvokeApiAsync<IEnumerable<PhotoResponse>>("Photo/GetItems", HttpMethod.Get, pars);
-        }
-        public Task<PhotoResponse> GetPhoto(Guid storyId)
-        {
-            var pars = new Dictionary<string, string>();
-            pars.Add("photoId", storyId.ToString());
-
-
-            return _serviceClient.InvokeApiAsync<PhotoResponse>("Photo/GetItem", HttpMethod.Get, pars);
+            return _photoTable.LookupAsync(storyId);
         }
 
     }

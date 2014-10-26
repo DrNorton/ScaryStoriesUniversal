@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScaryStories.MobileService"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScaryStories.MobileService.Entity", "ScaryStories.MobileService.Entity\ScaryStories.MobileService.Entity.csproj", "{D0625F62-2F9D-4B23-9F11-6A79BEB5EC2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScaryStoriesUniversal.Dtos", "..\ScaryStoriesUniversal.Dtos\ScaryStoriesUniversal.Dtos.csproj", "{E42A323B-56F1-4DEA-B775-C875887B3358}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScaryStoriesUniversal.Dtos", "ScaryStoriesUniversal.Dtos\ScaryStoriesUniversal.Dtos.csproj", "{E42A323B-56F1-4DEA-B775-C875887B3358}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

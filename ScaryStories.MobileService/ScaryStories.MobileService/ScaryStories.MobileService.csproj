@@ -168,6 +168,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Spatial, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -225,6 +226,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\PhotoController.cs" />
+    <Compile Include="Controllers\SourceController.cs" />
     <Compile Include="Controllers\StoryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -257,14 +261,17 @@
     <None Include="Properties\PublishProfiles\StoriesMobileService - FTP.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ScaryStoriesUniversal.Dtos\ScaryStoriesUniversal.Dtos.csproj">
-      <Project>{e42a323b-56f1-4dea-b775-c875887b3358}</Project>
-      <Name>ScaryStoriesUniversal.Dtos</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ScaryStories.MobileService.Entity\ScaryStories.MobileService.Entity.csproj">
       <Project>{d0625f62-2f9d-4b23-9f11-6a79beb5ec2b}</Project>
       <Name>ScaryStories.MobileService.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ScaryStoriesUniversal.Dtos\ScaryStoriesUniversal.Dtos.csproj">
+      <Project>{e42a323b-56f1-4dea-b775-c875887b3358}</Project>
+      <Name>ScaryStoriesUniversal.Dtos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

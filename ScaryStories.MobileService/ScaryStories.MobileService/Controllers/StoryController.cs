@@ -9,6 +9,8 @@ using System.Web.Http.Controllers;
 using System.Web.Http.OData;
 using Microsoft.WindowsAzure.Mobile.Service;
 using ScaryStories.MobileService.Entity;
+using ScaryStories.MobileService.Entity.Entities;
+using ScaryStoriesUniversal.Dtos;
 
 namespace ScaryStories.MobileService.Controllers
 {

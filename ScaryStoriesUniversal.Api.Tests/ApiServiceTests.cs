@@ -36,14 +36,14 @@ namespace ScaryStoriesUniversal.Api.Tests
         [Test()]
         public async void GetBySourceIdTest()
         {
-            var stories = await _apiService.GetBySourceId(Guid.NewGuid(), 10, 10);
+            var stories = await _apiService.GetBySourceId(Guid.Parse("201c6c54-469c-45e1-9e56-dd7086b6a8cb"), 10, 10);
             Assert.IsNotNull(stories);
         }
 
         [Test()]
         public async void GetStoryTest()
         {
-            var stories = await _apiService.GetStory(Guid.Parse("c82e20ab-5e2b-485f-8840-04a571b6c8d3"));
+            var stories = await _apiService.GetStory(Guid.Parse("0439c727-e29c-4009-96d2-d028c86bc89c"));
             Assert.IsNotNull(stories);
         }
 
@@ -71,7 +71,7 @@ namespace ScaryStoriesUniversal.Api.Tests
         [Test()]
         public async void GetPhotoTest()
         {
-            var photo = await _apiService.GetPhoto(Guid.Parse("faa400df-d6b4-4100-a541-017a5c804d38"));
+            var photo = await _apiService.GetPhoto(Guid.Parse("022369e1-37c2-4461-b7cb-5df104312126"));
             Assert.IsNotNull(photo);
         }
 

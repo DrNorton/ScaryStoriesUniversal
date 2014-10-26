@@ -1,14 +1,14 @@
 ﻿CREATE TABLE [dbo].[Stories]
 (
-	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
-    [CategoryId] UNIQUEIDENTIFIER NOT NULL, 
+	[Id] NVARCHAR(250) NOT NULL PRIMARY KEY, 
+    [CategoryId] NVARCHAR(250) NOT NULL, 
     [Name] NVARCHAR(250) NOT NULL, 
     [Text] NTEXT NOT NULL, 
     [Url] NVARCHAR(300) NULL, 
-    [SourceId] UNIQUEIDENTIFIER NOT NULL, 
-    [PhotoId] UNIQUEIDENTIFIER NOT NULL, 
+    [SourceId] NVARCHAR(250) NOT NULL, 
+    [PhotoId] NVARCHAR(250) NOT NULL, 
 	[CreatedAt] DATETIMEOFFSET NULL, 
-    [Deleted] BIT NULL, 
+    [Deleted] BIT NOT NULL, 
     [UpdatedAt] DATETIMEOFFSET NULL, 
     [Version] VARBINARY(50) NULL
     CONSTRAINT [FK_Stories_Categories] FOREIGN KEY ([CategoryId]) REFERENCES [Categories]([Id]),

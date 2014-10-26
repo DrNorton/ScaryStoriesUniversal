@@ -7,11 +7,9 @@ using Windows.UI.Xaml.Controls;
 using Caliburn.Micro;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
-using ScaryStoriesUniversal.Database.DataAccess;
-using ScaryStoriesUniversal.Database.Entities;
-using ScaryStoriesUniversal.Database.Repositories;
-using ScaryStoriesUniversal.Database.Repositories.Base;
-
+using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
+using ScaryStoriesUniversal.Api;
+using ScaryStoriesUniversal.Api.Entities;
 using ScaryStoriesUniversal.ViewModels;
 using ScaryStoriesUniversal.Views;
 
@@ -33,37 +31,27 @@ namespace ScaryStoriesUniversal
         {
             _container = new WinRTContainer();
             _container.RegisterWinRTServices();
+            RegisterViewModels();
+            var apiService = new ApiService("http://localhost:16781", null);
+            _container.RegisterInstance(typeof(IApiService), "", apiService);
+            InitLocalStore(apiService);
+        }
+
+        private void RegisterViewModels()
+        {
             _container.PerRequest<MainViewModel>();
-             InitDatabase();
-          
+            _container.PerRequest<AllStoriesViewModel>();
         }
 
-        private  async void InitDatabase()
+        private async void InitLocalStore(IApiService apiService)
         {
-            var dbPath = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "scaryStories.sqlite");
-            await InitializeDatabaseAndRegisterDbConnection(dbPath);
-            InitializeRepositories();
-            await InitTestData();
-        }
-
-        private async Task InitTestData()
-        {
-            var storyRepository=(IStoryRepository)_container.GetInstance(typeof (IStoryRepository), null);
-            var categoryRepository =(ICategoryRepository) _container.GetInstance(typeof(ICategoryRepository), null);
-            await categoryRepository.InsertCategoryAsync(new Category() {CreatedTime = DateTime.Now, Name = "Призраки"});
-        }
-
-        private void InitializeRepositories()
-        {
-            _container.RegisterPerRequest(typeof(IStoryRepository),null,typeof(StoryRepository));
-            _container.RegisterPerRequest(typeof(ICategoryRepository), null, typeof(CategoryRepository));
-        }
-
-        private async Task  InitializeDatabaseAndRegisterDbConnection(string path)
-        {
-            var oDbConnection = new DbConnection(path);
-            oDbConnection.InitializeDatabase();
-            _container.RegisterInstance(typeof(IDbConnection),null,oDbConnection);
+            if (apiService.ServiceClient.SyncContext.IsInitialized)
+            {
+                var store = new MobileServiceSQLiteStore("localsync12.db");
+                store.DefineTable<Story>();
+                await store.InitializeAsync();
+            }
+           
         }
 
 

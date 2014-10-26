@@ -6,18 +6,12 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using ScaryStories.MobileService.Entity;
+
 using VkNet;
 using VkNet.Enums.Filters;
 using VkNet.Model;
-using VkNet.Model.Attachments;
+using Photo = VkNet.Model.Attachments.Photo;
 
 
 namespace StoryParser
@@ -36,8 +30,8 @@ namespace StoryParser
         private async void Get()
         {
             int res = 0;
-            var scaryStories = new scaryStoriesEntities();
-           InsertCategory(scaryStories);
+            var scaryStories = new StoriesMobileService_dbEntities();
+          InsertCategory(scaryStories);
            InsertSource(scaryStories);
             int appId = 3383873; // указываем id приложения
             string email = "kozak_andrews@mail.ru"; // email для авторизации
@@ -78,16 +72,17 @@ namespace StoryParser
             
         }
 
-        private void InsertCategory(scaryStoriesEntities scaryStories)
+        private void InsertCategory(StoriesMobileService_dbEntities scaryStories)
         {
-            scaryStories.Categories.Add(new Categories()
+            var category = new Category()
             {
-                Id=Guid.NewGuid(),
-                CreatedAt = DateTime.Now,
+                Id = Guid.NewGuid().ToString(),
                 Description = "",
                 Name = "Страшные истории",
                 Image = File.ReadAllBytes(@"C:\Users\WinPhone\Desktop\UBBFayZv4F0.jpg")
-            });
+            };
+
+            scaryStories.Categories.Add(category);
             try
             {
                 scaryStories.SaveChanges();
@@ -99,12 +94,12 @@ namespace StoryParser
             }
            
         }
-        private void InsertSource(scaryStoriesEntities scaryStories)
+        private void InsertSource(StoriesMobileService_dbEntities scaryStories)
         {
-            scaryStories.Sources.Add(new Sources()
+            scaryStories.Sources.Add(new Source()
             {
-                Id = Guid.NewGuid(),
-                CreatedAt = DateTime.Now,
+                Id = Guid.NewGuid().ToString(),
+              
                 Url = "https://vk.com/horror_tales",
                 Name = "Страшные истории (horror_tales)",
                 Image = File.ReadAllBytes(@"C:\Users\WinPhone\Desktop\UBBFayZv4F0.jpg")
@@ -112,7 +107,7 @@ namespace StoryParser
             scaryStories.SaveChanges();
         }
 
-        private void InsertStory(scaryStoriesEntities scaryStories,Post post,Categories category,Sources sources)
+        private void InsertStory(StoriesMobileService_dbEntities scaryStories, Post post, Category category, Source sources)
         {
             var index = post.Text.IndexOf("\n\n");
             string url = null;
@@ -127,9 +122,9 @@ namespace StoryParser
             var text = post.Text.Substring(index+2, post.Text.Length - index-2);
             if (post.Attachment != null)
             {
-                if (post.Attachment.Instance is Photo)
+                if (post.Attachment.Instance is VkNet.Model.Attachments.Photo)
                 {
-                    var photo = (Photo)post.Attachment.Instance;
+                    var photo = (VkNet.Model.Attachments.Photo)post.Attachment.Instance;
                     var thumbl = photo.Photo130;
                     var image = photo.Photo604;
                     var webClient = new WebClient();
@@ -139,18 +134,30 @@ namespace StoryParser
                    url = String.Format("https://vk.com/photo{0}_{1}", photo.OwnerId, photo.Id);
                 }
             }
-            scaryStories.Stories.Add(new Stories()
+
+            var photo2 = new ScaryStories.MobileService.Entity.Photo()
             {
-                Categories = category,
-                Sources = sources,
-                CreatedAt = DateTime.Now,
-                Id = Guid.NewGuid(),
+                Id = Guid.NewGuid().ToString(),
+              
+                Image = imageBytes,
+                Thumb = thumblBytes
+            };
+            var entity = new Story()
+            {
+                Category = category,
+                Source = sources,
+              
+              
+              
+                Id = Guid.NewGuid().ToString(),
                 Text = text,
                 Name = header,
-                Photos = new Photos() { Id = Guid.NewGuid(), CreatedAt = DateTime.Now, Image = imageBytes, Thumb = thumblBytes },
+           
+                Photo = photo2,
                 Url=url
             
-            });
+            };
+            scaryStories.Stories.Add(entity);
             try
             {
                 scaryStories.SaveChanges();

@@ -15,19 +15,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Database\DataAccess\DbConnection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\DataAccess\IDbConnection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\Entities\Category.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\Entities\History.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\Entities\IDetail.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\Entities\Source.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\Entities\Story.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\Repositories\Base\ICategoryRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\Repositories\Base\IStoryRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\Repositories\CategoryRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\Repositories\StoryRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\sql\SQLite.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\sql\SQLiteAsync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AllStoriesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoadingScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -35,5 +24,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
   </ItemGroup>
 </Project>
