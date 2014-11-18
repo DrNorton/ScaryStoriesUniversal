@@ -42,6 +42,7 @@
           <Property Name="Deleted" Type="bit" Nullable="false" />
           <Property Name="UpdatedAt" Type="datetimeoffset" Precision="7" />
           <Property Name="Version" Type="varbinary" MaxLength="50" />
+          <Property Name="IsVideo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Stories">
           <Key>
@@ -58,6 +59,24 @@
           <Property Name="Deleted" Type="bit" Nullable="false" />
           <Property Name="UpdatedAt" Type="datetimeoffset" Precision="7" />
           <Property Name="Version" Type="varbinary" MaxLength="50" />
+          <Property Name="Likes" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Videos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Thumb" Type="image" />
+          <Property Name="Image" Type="image" />
+          <Property Name="Text" Type="ntext" />
+          <Property Name="CreatedAt" Type="datetimeoffset" Precision="7" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetimeoffset" Precision="7" />
+          <Property Name="Version" Type="varbinary" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="ChannalName" Type="nvarchar" MaxLength="250" />
+          <Property Name="SourceId" Type="nvarchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <Association Name="FK_Stories_Categories">
           <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
@@ -95,11 +114,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Videos_Sources">
+          <End Role="Sources" Type="Self.Sources" Multiplicity="1" />
+          <End Role="Videos" Type="Self.Videos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sources">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Videos">
+              <PropertyRef Name="SourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="StoriesMobileService_dbModelStoreContainer">
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Photos" EntityType="Self.Photos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sources" EntityType="Self.Sources" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stories" EntityType="Self.Stories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Videos" EntityType="Self.Videos" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Stories_Categories" Association="Self.FK_Stories_Categories">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Stories" EntitySet="Stories" />
@@ -111,6 +143,10 @@
           <AssociationSet Name="FK_Stories_ToPhoto" Association="Self.FK_Stories_ToPhoto">
             <End Role="Photos" EntitySet="Photos" />
             <End Role="Stories" EntitySet="Stories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Videos_Sources" Association="Self.FK_Videos_Sources">
+            <End Role="Sources" EntitySet="Sources" />
+            <End Role="Videos" EntitySet="Videos" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -133,6 +169,11 @@
           <AssociationSet Name="FK_Stories_Sources" Association="StoriesMobileService_dbModel.FK_Stories_Sources">
             <End Role="Source" EntitySet="Sources" />
             <End Role="Story" EntitySet="Stories" />
+          </AssociationSet>
+          <EntitySet Name="Videos" EntityType="StoriesMobileService_dbModel.Video" />
+          <AssociationSet Name="FK_Videos_Sources" Association="StoriesMobileService_dbModel.FK_Videos_Sources">
+            <End Role="Source" EntitySet="Sources" />
+            <End Role="Video" EntitySet="Videos" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Category">
@@ -175,6 +216,8 @@
           <Property Name="UpdatedAt" Type="DateTimeOffset" Precision="7" />
           <Property Name="Version" Type="Binary" MaxLength="50" FixedLength="false" />
           <NavigationProperty Name="Stories" Relationship="StoriesMobileService_dbModel.FK_Stories_Sources" FromRole="Source" ToRole="Story" />
+          <Property Name="IsVideo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Videos" Relationship="StoriesMobileService_dbModel.FK_Videos_Sources" FromRole="Source" ToRole="Video" />
         </EntityType>
         <EntityType Name="Story">
           <Key>
@@ -194,6 +237,7 @@
           <NavigationProperty Name="Category" Relationship="StoriesMobileService_dbModel.FK_Stories_Categories" FromRole="Story" ToRole="Category" />
           <NavigationProperty Name="Photo" Relationship="StoriesMobileService_dbModel.FK_Stories_ToPhoto" FromRole="Story" ToRole="Photo" />
           <NavigationProperty Name="Source" Relationship="StoriesMobileService_dbModel.FK_Stories_Sources" FromRole="Story" ToRole="Source" />
+          <Property Name="Likes" Type="Int64" />
         </EntityType>
         <Association Name="FK_Stories_Categories">
           <End Type="StoriesMobileService_dbModel.Category" Role="Category" Multiplicity="1" />
@@ -227,6 +271,36 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Story">
+              <PropertyRef Name="SourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Thumb" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTimeOffset" Precision="7" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="UpdatedAt" Type="DateTimeOffset" Precision="7" />
+          <Property Name="Version" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ChannalName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SourceId" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Source" Relationship="StoriesMobileService_dbModel.FK_Videos_Sources" FromRole="Video" ToRole="Source" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Videos_Sources">
+          <End Type="StoriesMobileService_dbModel.Source" Role="Source" Multiplicity="1" />
+          <End Type="StoriesMobileService_dbModel.Video" Role="Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Video">
               <PropertyRef Name="SourceId" />
             </Dependent>
           </ReferentialConstraint>
@@ -267,6 +341,7 @@
           <EntitySetMapping Name="Sources">
             <EntityTypeMapping TypeName="StoriesMobileService_dbModel.Source">
               <MappingFragment StoreEntitySet="Sources">
+                <ScalarProperty Name="IsVideo" ColumnName="IsVideo" />
                 <ScalarProperty Name="Version" ColumnName="Version" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
@@ -281,6 +356,7 @@
           <EntitySetMapping Name="Stories">
             <EntityTypeMapping TypeName="StoriesMobileService_dbModel.Story">
               <MappingFragment StoreEntitySet="Stories">
+                <ScalarProperty Name="Likes" ColumnName="Likes" />
                 <ScalarProperty Name="Version" ColumnName="Version" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
@@ -291,6 +367,24 @@
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Videos">
+            <EntityTypeMapping TypeName="StoriesMobileService_dbModel.Video">
+              <MappingFragment StoreEntitySet="Videos">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+                <ScalarProperty Name="ChannalName" ColumnName="ChannalName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Thumb" ColumnName="Thumb" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using ScaryStoriesUniversal.Database.Entities;
+
 using SQLite;
 
 namespace ScaryStoriesUniversal.Database.DataAccess
@@ -16,10 +17,9 @@ namespace ScaryStoriesUniversal.Database.DataAccess
 
         public async Task InitializeDatabase()
         {
-          await  conn.CreateTableAsync<Category>();
-           await conn.CreateTableAsync<Source>();
-           await conn.CreateTableAsync<Story>();
-           await conn.CreateTableAsync<History>();
+          await  conn.CreateTableAsync<FavoriteStory>();
+           await conn.CreateTableAsync<PhotoEntity>();
+
         }
 
         public SQLiteAsyncConnection GetAsyncConnection()

@@ -21,11 +21,11 @@ namespace ScaryStories.MobileService.Entity
             this.Stories = new HashSet<Story>();
         }
     
-       
+    
         public byte[] Image { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-      
+       
     
         public virtual ICollection<Story> Stories { get; set; }
     }

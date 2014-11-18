@@ -24,7 +24,8 @@ namespace ScaryStories.MobileService.Entity
       
         public byte[] Image { get; set; }
         public byte[] Thumb { get; set; }
-     
+      
+    
         public virtual ICollection<Story> Stories { get; set; }
     }
 }

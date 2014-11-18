@@ -1,0 +1,55 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ScaryStoriesUniversal.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:ScaryStoriesUniversal.Converters"
+    
+    xmlns:micro="using:Caliburn.Micro"
+    xmlns:primitives1="using:Telerik.UI.Xaml.Controls.Primitives"
+    xmlns:controls="using:ScaryStoriesUniversal.Controls"
+    xmlns:SampleData="using:Blend.SampleData.SampleStoryDataSource"
+    x:Class="ScaryStoriesUniversal.Views.StoryView"
+    
+    mc:Ignorable="d">
+    <Page.Resources>
+    	<SampleData:SampleStoryDataSource x:Key="SampleStoryDataSource" d:IsDataSource="True"/>
+        <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
+    </Page.Resources>
+	
+    
+    
+    <Page.BottomAppBar>
+        <CommandBar IsOpen="True"  >
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="WebNavigateToUrl" Label="на страницу" Icon="Globe"/>
+            </CommandBar.SecondaryCommands>
+            <AppBarButton x:Name="Back" Label="предыдущее" Icon="Back" />
+            <AppBarButton x:Name="DeleteFromFavorite" Visibility="{Binding DeleteFromFavoriteButtonVisible}"  Icon="UnFavorite" />
+            <AppBarButton x:Name="ToFavorite" Visibility="{Binding ToFavoriteButtonVisible}"   Icon="Favorite" />
+            <AppBarButton x:Name="Next" Label="следущее" Icon="Forward" />
+        </CommandBar>
+    </Page.BottomAppBar>
+
+
+    <Grid d:DataContext="{Binding Source={StaticResource SampleStoryDataSource}}">
+    
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+        <primitives1:RadBusyIndicator Grid.RowSpan="5" IsActive="{Binding IsLoading}" Style="{StaticResource RadBusyIndicatorStyle}"/>
+		<controls:BackControl Margin="20"  Canvas.ZIndex="5" VerticalAlignment="Top" />
+		<Image  Grid.Column="0" VerticalAlignment="Top" Source="{Binding Photo.Image, Converter={StaticResource ByteArrayToImageConverter}}"  micro:Message.Attach="[Event Tapped] = [Action ImageTap()]" />
+		<ScrollViewer Grid.Column="1">
+		<StackPanel>
+			<TextBlock Margin="5" FontSize="45" Text="{Binding Story.Name}" Style="{StaticResource HeaderTextBlockStyle}"  TextWrapping="Wrap"/>
+			<TextBlock Margin="5" FontSize="15" Text="{Binding Story.Text}" TextWrapping="Wrap"/>
+		</StackPanel>				
+			
+			
+		</ScrollViewer>
+	</Grid>
+    
+</Page>

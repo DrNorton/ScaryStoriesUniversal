@@ -2,12 +2,15 @@
     x:Class="ScaryStoriesUniversal.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:micro="using:Caliburn.Micro">
+    xmlns:micro="using:Caliburn.Micro"
+    xmlns:converters="using:ScaryStoriesUniversal.Converters">
     <micro:CaliburnApplication.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ScaryStoriesStyle.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
+            <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
         </ResourceDictionary>
     </micro:CaliburnApplication.Resources>
 </micro:CaliburnApplication>

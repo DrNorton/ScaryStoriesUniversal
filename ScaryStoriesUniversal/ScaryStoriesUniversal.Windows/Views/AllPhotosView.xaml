@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="ScaryStoriesUniversal.Views.AllPhotosView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ScaryStoriesUniversal.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:system="using:System"
+     NavigationCacheMode="Enabled"
+   
+    xmlns:helpers="using:ScaryStoriesUniversal.Helpers"
+    xmlns:converters="using:ScaryStoriesUniversal.Converters"
+    xmlns:primitives1="using:Telerik.UI.Xaml.Controls.Primitives"
+    xmlns:core="using:Telerik.Core"
+    xmlns:controls="using:ScaryStoriesUniversal.Controls"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="WrapModeDataTemplate">
+            <Image Source="{Binding Thumb,Converter={StaticResource ByteArrayToImageConverter},Mode=TwoWay}"  Stretch="None" Margin="5"/>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <controls:BackControl Margin="20"  Canvas.ZIndex="5" VerticalAlignment="Top" />
+        <primitives1:RadDataBoundListBox Grid.Row="1"
+            
+            IsAsyncBalanceEnabled="True"
+            x:Name="listBox" 
+             SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
+            ItemTemplate="{StaticResource WrapModeDataTemplate}" 
+            IncrementalLoadingMode="Auto" 
+            ItemsSource="{Binding Items}">
+
+            <primitives1:RadDataBoundListBox.ItemAddedAnimation>
+                <core:RadFadeAnimation StartOpacity="0" InitialDelay="0:0:0.3" EndOpacity="1" Duration="0:0:0.9">
+                    <core:RadFadeAnimation.Easing>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </core:RadFadeAnimation.Easing>
+                </core:RadFadeAnimation>
+            </primitives1:RadDataBoundListBox.ItemAddedAnimation>
+            <primitives1:RadDataBoundListBox.ItemLoadingContent>
+                <primitives1:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}"/>
+            </primitives1:RadDataBoundListBox.ItemLoadingContent>
+            <primitives1:RadDataBoundListBox.EmptyContent>
+                <primitives1:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}"/>
+            </primitives1:RadDataBoundListBox.EmptyContent>
+            <primitives1:RadDataBoundListBox.VirtualizationStrategyDefinition>
+                <primitives1:WrapVirtualizationStrategyDefinition Orientation="Horizontal"/>
+            </primitives1:RadDataBoundListBox.VirtualizationStrategyDefinition>
+        </primitives1:RadDataBoundListBox>
+    </Grid>
+        
+   
+
+     
+</Page>

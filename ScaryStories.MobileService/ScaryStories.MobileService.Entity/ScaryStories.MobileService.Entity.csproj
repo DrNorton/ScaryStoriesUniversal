@@ -230,6 +230,9 @@
     <Compile Include="Story.cs">
       <DependentUpon>ScaryStoriesContextModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Video.cs">
+      <DependentUpon>ScaryStoriesContextModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

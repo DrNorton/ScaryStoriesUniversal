@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{BC152AD3-1DA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScaryStoriesUniversal.Api.Tests", "ScaryStoriesUniversal.Api.Tests\ScaryStoriesUniversal.Api.Tests.csproj", "{96AC0FB9-7E7F-4301-9A4D-3BB05B1BF860}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Additional", "Additional", "{4AD3E999-B8DF-4AB3-9469-92C7C74E5430}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ScaryStoriesUniversal\ScaryStoriesUniversal.Shared\ScaryStoriesUniversal.Shared.projitems*{e4f97591-db68-4e01-b204-8c8f3301c73f}*SharedItemsImports = 4
@@ -96,9 +98,9 @@ Global
 		{E4F97591-DB68-4E01-B204-8C8F3301C73F}.Release|ARM.ActiveCfg = Release|ARM
 		{E4F97591-DB68-4E01-B204-8C8F3301C73F}.Release|ARM.Build.0 = Release|ARM
 		{E4F97591-DB68-4E01-B204-8C8F3301C73F}.Release|ARM.Deploy.0 = Release|ARM
-		{E4F97591-DB68-4E01-B204-8C8F3301C73F}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{E4F97591-DB68-4E01-B204-8C8F3301C73F}.Release|Mixed Platforms.Build.0 = Release|x86
-		{E4F97591-DB68-4E01-B204-8C8F3301C73F}.Release|Mixed Platforms.Deploy.0 = Release|x86
+		{E4F97591-DB68-4E01-B204-8C8F3301C73F}.Release|Mixed Platforms.ActiveCfg = Release|ARM
+		{E4F97591-DB68-4E01-B204-8C8F3301C73F}.Release|Mixed Platforms.Build.0 = Release|ARM
+		{E4F97591-DB68-4E01-B204-8C8F3301C73F}.Release|Mixed Platforms.Deploy.0 = Release|ARM
 		{E4F97591-DB68-4E01-B204-8C8F3301C73F}.Release|Win32.ActiveCfg = Release|x86
 		{E4F97591-DB68-4E01-B204-8C8F3301C73F}.Release|Win32.Build.0 = Release|x86
 		{E4F97591-DB68-4E01-B204-8C8F3301C73F}.Release|Win32.Deploy.0 = Release|x86

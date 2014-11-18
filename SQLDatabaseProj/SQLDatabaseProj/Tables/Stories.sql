@@ -12,6 +12,7 @@
     [UpdatedAt] DATETIMEOFFSET NULL, 
     [Version] VARBINARY(50) NULL
     CONSTRAINT [FK_Stories_Categories] FOREIGN KEY ([CategoryId]) REFERENCES [Categories]([Id]),
-	CONSTRAINT [FK_Stories_Sources] FOREIGN KEY ([SourceId]) REFERENCES [Sources]([Id]), 
+	[Likes] BIGINT NULL DEFAULT 0, 
+    CONSTRAINT [FK_Stories_Sources] FOREIGN KEY ([SourceId]) REFERENCES [Sources]([Id]), 
     CONSTRAINT [FK_Stories_ToPhoto] FOREIGN KEY ([PhotoId]) REFERENCES [Photos]([Id])
 )

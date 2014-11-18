@@ -2215,7 +2215,9 @@ namespace SQLite
 			} else {
 				if (clrType == typeof(String)) {
 					return SQLite3.ColumnString (stmt, index);
-				} else if (clrType == typeof(Int32)) {
+				}
+                
+                else if (clrType == typeof(Int32)) {
 					return (int)SQLite3.ColumnInt (stmt, index);
 				} else if (clrType == typeof(Boolean)) {
 					return SQLite3.ColumnInt (stmt, index) == 1;

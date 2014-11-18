@@ -16,7 +16,7 @@ namespace ScaryStories.MobileService.Entity
     public partial class ScaryStoriesContext : DbContext
     {
         public ScaryStoriesContext()
-            : base("name=StoriesMobileService_dbEntities")
+            : base("name=ScaryStoriesContext")
         {
         }
     
@@ -29,5 +29,6 @@ namespace ScaryStories.MobileService.Entity
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<Source> Sources { get; set; }
         public virtual DbSet<Story> Stories { get; set; }
+        public virtual DbSet<Video> Videos { get; set; }
     }
 }

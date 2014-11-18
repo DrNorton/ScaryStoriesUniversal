@@ -40,7 +40,8 @@
     <Compile Include="PhotoDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SourceDto.cs" />
-    <Compile Include="StoryDto.cs" />
+    <Compile Include="StoryListItemDto.cs" />
+    <Compile Include="VideoDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.WindowsAzure.Mobile">

@@ -19,14 +19,17 @@ namespace ScaryStories.MobileService.Entity
         public Source()
         {
             this.Stories = new HashSet<Story>();
+            this.Videos = new HashSet<Video>();
         }
     
         
         public string Name { get; set; }
         public byte[] Image { get; set; }
         public string Url { get; set; }
-     
+       
+        public bool IsVideo { get; set; }
     
         public virtual ICollection<Story> Stories { get; set; }
+        public virtual ICollection<Video> Videos { get; set; }
     }
 }

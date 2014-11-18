@@ -230,6 +230,7 @@
     <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\SourceController.cs" />
     <Compile Include="Controllers\StoryController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -10,7 +10,7 @@ using System.Web.Http.OData;
 using Microsoft.WindowsAzure.Mobile.Service;
 using ScaryStories.MobileService.Entity;
 using ScaryStories.MobileService.Entity.Entities;
-using ScaryStoriesUniversal.Dtos;
+using ScaryStoriesUniversal.Dtos; 
 
 namespace ScaryStories.MobileService.Controllers
 {
@@ -31,9 +31,9 @@ namespace ScaryStories.MobileService.Controllers
         }
 
         // GET tables/TodoItem
-        public IQueryable<Story> GetAllTodoItems()
+        public IQueryable<StoryListItemDto> GetAllTodoItems()
         {
-            return Query();
+            return Query().Select(x=>new StoryListItemDto(){SourceId = x.SourceId,Name = x.Name,CreatedAt = x.CreatedAt,Deleted = x.Deleted,Id = x.Id,UpdatedAt = x.UpdatedAt,Thumb = x.Photo.Thumb,Version = x.Version});
         }
 
         // GET tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
@@ -60,6 +60,7 @@ namespace ScaryStories.MobileService.Controllers
         {
             return DeleteAsync(id);
         }
+      
 
     }
 }

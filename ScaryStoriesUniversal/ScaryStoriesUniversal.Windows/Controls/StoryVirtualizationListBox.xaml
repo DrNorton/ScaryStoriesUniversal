@@ -1,0 +1,71 @@
+﻿<UserControl
+    x:Class="ScaryStoriesUniversal.Controls.StoryVirtualizationListBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ScaryStoriesUniversal.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   
+    xmlns:primitives1="using:Telerik.UI.Xaml.Controls.Primitives"
+    xmlns:converters="using:ScaryStoriesUniversal.Converters"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <converters:VisibilityReverseConverter x:Name="VisibilityReverseConverter"/>
+    </UserControl.Resources>
+    
+    <primitives1:RadDataBoundListBox 
+            x:Name="ListBox"
+            ItemsSource="{Binding Items,Mode=TwoWay}"
+            IsAsyncBalanceEnabled="True"
+            CacheMode="BitmapCache"
+            EmptyContentDisplayMode="DataSourceEmpty"
+            IncrementalLoadingMode="Auto"
+            SelectedItem="{Binding SelectedItem,Mode=TwoWay}">
+            <primitives1:RadDataBoundListBox.ItemLoadingContent>
+            <primitives1:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}"/>
+            </primitives1:RadDataBoundListBox.ItemLoadingContent>
+            <primitives1:RadDataBoundListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="7*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Margin="10" MinWidth="90"
+                               VerticalAlignment="Center"
+                               Stretch="Fill"
+                               Source="{Binding Thumb,Converter={StaticResource ByteArrayToImageConverter},Mode=TwoWay}"
+                               MinHeight="90"
+                               HorizontalAlignment="Center"
+                               Grid.Column="0"/>
+                        <TextBlock VerticalAlignment="Center"  Grid.Column="1"
+                                       Text="{Binding Name,Mode=TwoWay}"  TextWrapping="Wrap" FontSize="20" Foreground="White"/>
+
+                    </Grid>
+
+                </DataTemplate>
+            </primitives1:RadDataBoundListBox.ItemTemplate>
+            <primitives1:RadDataBoundListBox.ItemContainerStyle>
+                <Style TargetType="primitives1:RadDataBoundListBoxItem">
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Margin" Value="0,0,0,40"/>
+                </Style>
+            </primitives1:RadDataBoundListBox.ItemContainerStyle>
+            <primitives1:RadDataBoundListBox.EmptyContent>
+              <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Нет данных"/>
+            </primitives1:RadDataBoundListBox.EmptyContent>
+            <primitives1:RadDataBoundListBox.ItemLoadingTemplate>
+                <DataTemplate>
+                <primitives1:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}" IsActive="True" Visibility="{Binding ElementName=ListBox,Path=DataContext.IsLoading,Converter={StaticResource VisibilityReverseConverter}}" Content=""/>
+                </DataTemplate>
+            </primitives1:RadDataBoundListBox.ItemLoadingTemplate>
+        <primitives1:RadDataBoundListBox.VirtualizationStrategyDefinition>
+            <primitives1:DynamicGridVirtualizationStrategyDefinition  Orientation="Horizontal"/>
+        </primitives1:RadDataBoundListBox.VirtualizationStrategyDefinition>
+
+    </primitives1:RadDataBoundListBox>
+  
+</UserControl>

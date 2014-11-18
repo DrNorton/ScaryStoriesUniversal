@@ -38,9 +38,11 @@
     <Compile Include="ApiService.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\IBaseEntity.cs" />
     <Compile Include="Entities\Photo.cs" />
     <Compile Include="Entities\Source.cs" />
     <Compile Include="Entities\Story.cs" />
+    <Compile Include="Entities\Video.cs" />
     <Compile Include="IApiService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

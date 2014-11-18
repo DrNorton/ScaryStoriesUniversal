@@ -12,6 +12,8 @@
         <AssociationConnector Association="StoriesMobileService_dbModel.FK_Stories_Categories" />
         <AssociationConnector Association="StoriesMobileService_dbModel.FK_Stories_ToPhoto" />
         <AssociationConnector Association="StoriesMobileService_dbModel.FK_Stories_Sources" />
+        <EntityTypeShape EntityType="StoriesMobileService_dbModel.Video" PointX="3" PointY="6.25" Width="1.5" />
+        <AssociationConnector Association="StoriesMobileService_dbModel.FK_Videos_Sources" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

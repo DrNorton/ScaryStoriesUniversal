@@ -16,14 +16,15 @@ namespace ScaryStories.MobileService.Entity
 
     public partial class Story : CustomEntity
     {
-       
+     
         public string CategoryId { get; set; }
         public string Name { get; set; }
         public string Text { get; set; }
         public string Url { get; set; }
         public string SourceId { get; set; }
         public string PhotoId { get; set; }
-      
+       
+        public Nullable<long> Likes { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual Photo Photo { get; set; }

@@ -15,17 +15,137 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controllers\Models\FileSavePickerRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controllers\Models\FileSavePickerResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controllers\PickerController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\BackControl.xaml.cs">
+      <DependentUpon>BackControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ByteArrayToImageConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\VisibilityReverseConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\DataAccess\DbConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\DataAccess\IDbConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Entities\FavoriteStory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Entities\PhotoEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Repositories\Base\IFavoriteStoriesRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Repositories\Base\IPhotoCachingRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Repositories\FavoriteStoriesRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Repositories\PhotoCachingRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\sql\SQLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\sql\SQLiteAsync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\AsyncSynchronizationContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\HelpersExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\LoadMoreControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\StoryListIdsContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IMessageProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\MessageProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AllPhotosViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AllStoriesViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoadingScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AllVideosViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Base\LoadingScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Base\VirtualizationListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FavoritesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FindViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PhotoViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AllSourcesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SourceViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StoryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoPlayerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AllSourcesView.xaml.cs">
+      <DependentUpon>AllSourcesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AllStoriesView.xaml.cs">
+      <DependentUpon>AllStoriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AllVideosView.xaml.cs">
+      <DependentUpon>AllVideosView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FavoritesView.xaml.cs">
+      <DependentUpon>FavoritesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FindView.xaml.cs">
+      <DependentUpon>FindView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PhotoView.xaml.cs">
+      <DependentUpon>PhotoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SourceView.xaml.cs">
+      <DependentUpon>SourceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VideoPlayerView.xaml.cs">
+      <DependentUpon>VideoPlayerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VideoView.xaml.cs">
+      <DependentUpon>VideoView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\BackControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)ScaryStoriesStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\AllSourcesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\AllStoriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\AllVideosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\FavoritesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\FindView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PhotoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SourceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\VideoPlayerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\VideoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AllStories.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\back.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Sources.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\favorites.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Search.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Images.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LoadMore.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\stories.png" />
   </ItemGroup>
 </Project>

@@ -7,5 +7,6 @@
 	[CreatedAt] DATETIMEOFFSET NULL, 
     [Deleted] BIT NOT NULL, 
     [UpdatedAt] DATETIMEOFFSET NULL, 
-    [Version] VARBINARY(50) NULL
+    [Version] VARBINARY(50) NULL, 
+    [IsVideo] BIT NOT NULL DEFAULT 0
 )

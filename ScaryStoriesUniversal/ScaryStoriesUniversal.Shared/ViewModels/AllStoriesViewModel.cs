@@ -1,25 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using Caliburn.Micro;
 using ScaryStoriesUniversal.Api;
+using ScaryStoriesUniversal.Api.Entities;
+using ScaryStoriesUniversal.Helpers;
+using ScaryStoriesUniversal.ViewModels.Base;
+using ScaryStoriesUniversal.Views;
 
 namespace ScaryStoriesUniversal.ViewModels
 {
-    public class AllStoriesViewModel:LoadingScreen
+    public class AllStoriesViewModel : VirtualizationListViewModel<Story>
     {
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
-
-        public AllStoriesViewModel(INavigationService navigationService,IApiService apiService)
+        private readonly StoryListIdsContainer _idsContainer;
+  
+        public  AllStoriesViewModel(INavigationService navigationService,IApiService apiService,StoryListIdsContainer idsContainer)
+            :base(navigationService)
         {
             _navigationService = navigationService;
             _apiService = apiService;
+            _idsContainer = idsContainer;
+            base.ViewTitle = "Все истории";
+
         }
 
-        protected override void OnViewReady(object view)
+
+        public void NavigateToFind()
         {
-            base.OnViewReady(view);
+            _navigationService.UriFor<FindViewModel>().Navigate();
+        }
+
+        public override async Task<IEnumerable<Story>> GetItems(uint count)
+        {
+            return await _apiService.GetStories((int)count, _currentEndIndex);
+        }
+
+        public override void OnSelectItem(Story item)
+        {
+            var list = Items.Cast<Story>().ToList();
+            _idsContainer.SetIds(list.Select(x => x.Id));
+            _idsContainer.Position = list.IndexOf(item);
+                _navigationService.UriFor<StoryViewModel>().Navigate();
         }
     }
 }
