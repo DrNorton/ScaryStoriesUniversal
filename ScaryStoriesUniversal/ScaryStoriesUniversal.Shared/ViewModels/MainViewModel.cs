@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using ScaryStoriesUniversal.Api;
@@ -53,10 +55,36 @@ namespace ScaryStoriesUniversal.ViewModels
 
         private async void LoadBackground()
         {
+         
              var images=await _photoCachingRepository.GetRandomPhoto();
-            if (images != null)
+            if (images != null && images.Any())
             {
                 BackgroundImage = images.FirstOrDefault();
+            }
+            else
+            {
+                var fromResource = LoadFromResource("Hauted-House-by-Potapova1920.jpg");
+                var photoEntity = new PhotoEntity()
+                {
+                    CreatedAt = DateTime.Now,
+                    Id = Guid.NewGuid().ToString(),
+                    Image = fromResource,
+                    Thumb = fromResource
+                };
+                await _photoCachingRepository.InsertAsync(photoEntity);
+                BackgroundImage = photoEntity;
+            }
+        }
+
+        private static byte[] LoadFromResource(string name)
+        {
+         
+            using (Stream stream = typeof(MainViewModel).GetTypeInfo().Assembly.GetManifestResourceStream("ScaryStoriesUniversal."+name))
+            {
+                MemoryStream buffer = new MemoryStream();
+                stream.CopyTo(buffer);
+
+                return buffer.ToArray();
             }
         }
 
@@ -177,6 +205,11 @@ namespace ScaryStoriesUniversal.ViewModels
         public void NavigateToVideos()
         {
             _navigationService.UriFor<AllVideosViewModel>().Navigate();
+        }
+
+        public void Settings()
+        {
+            _navigationService.UriFor<SettingsViewModel>().Navigate();
         }
     }
 }

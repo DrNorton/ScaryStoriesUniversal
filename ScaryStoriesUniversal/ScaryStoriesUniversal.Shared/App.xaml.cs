@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Caliburn.Micro;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
@@ -19,6 +20,7 @@ using ScaryStoriesUniversal.Database.Repositories;
 using ScaryStoriesUniversal.Database.Repositories.Base;
 using ScaryStoriesUniversal.Helpers;
 using ScaryStoriesUniversal.Services;
+using ScaryStoriesUniversal.Services.Settings;
 using ScaryStoriesUniversal.ViewModels;
 using ScaryStoriesUniversal.Views;
 
@@ -34,7 +36,6 @@ namespace ScaryStoriesUniversal
         public App()
         {
             InitializeComponent();
-            
         }
 
         protected async  override void Configure()
@@ -46,7 +47,8 @@ namespace ScaryStoriesUniversal
             RegisterViewModels();
              InitLocalStore();
          //   var apiService = new ApiService("http://localhost:16781", null);
-            var apiService = new ApiService(@"http://storiesmobileservice.azure-mobile.net/", "tKroqvWTOqDmJGvBvowSrMSpGYFpGH69");
+             var apiService = new ApiService(@"http://storiesmobileservice.azure-mobile.net/", "eOxFathFeOfvquGBFoAZmDsGJuifQH42");
+            apiService.OnErrorHandled+=apiService_OnErrorHandled;
             _container.RegisterInstance(typeof(IApiService), "", apiService);
             _container.RegisterInstance(typeof(AnimationManager),"",new AnimationManager());
             _container.RegisterInstance(typeof(StoryListIdsContainer),"",new StoryListIdsContainer());
@@ -54,6 +56,23 @@ namespace ScaryStoriesUniversal
             _container.RegisterSingleton(typeof(PickerController), null, typeof(PickerController));
             var pickerController = _container.GetInstance(typeof(PickerController), null) as PickerController;
             pickerController.Start();
+            //init Settings
+            var settingsProvider = new SettingsProvider();
+            if (settingsProvider.TextSettings == null)
+            {
+                var info = new TextInfoSettings();
+                info.LineHeight = 1;
+                info.Size = 15;
+                info.Font = "Arial";
+                settingsProvider.TextSettings = info;
+            }
+            _container.RegisterInstance(typeof(ISettingsProvider),"",settingsProvider);
+        }
+
+        private void apiService_OnErrorHandled(Exception e)
+        {
+            var messageProvider=(IMessageProvider)_container.GetInstance(typeof (IMessageProvider), "");
+            messageProvider.ShowCustomOkMessageBox("Ошибка получения данных с сервиса. Проверьте интернет-соединение.", "Ошибка");
         }
 
         void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
@@ -76,6 +95,7 @@ namespace ScaryStoriesUniversal
             _container.PerRequest<FavoritesViewModel>();
             _container.PerRequest<AllSourcesViewModel>();
             _container.PerRequest<SourceViewModel>();
+            _container.PerRequest<SettingsViewModel>();
         }
 
         private void InitLocalStore()

@@ -1,0 +1,76 @@
+﻿<Page
+    x:Class="ScaryStoriesUniversal.Views.AllSourcesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ScaryStoriesUniversal.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:ScaryStoriesUniversal.Controls"
+    xmlns:converters="using:ScaryStoriesUniversal.Converters"
+    xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:VisibilityReverseConverter x:Name="VisibilityReverseConverter"/>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <controls:BackControl Title="{Binding ViewTitle}" />
+        <primitives:RadDataBoundListBox Grid.Row="1"
+            x:Name="ListBox"
+            ItemsSource="{Binding Items,Mode=TwoWay}"
+            IsAsyncBalanceEnabled="True"
+            CacheMode="BitmapCache"
+           EmptyContentDisplayMode="DataSourceEmpty"
+             IncrementalLoadingMode="Auto"
+            SelectedItem="{Binding SelectedItem,Mode=TwoWay}">
+            <primitives:RadDataBoundListBox.ItemLoadingContent>
+                <primitives:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}"/>
+            </primitives:RadDataBoundListBox.ItemLoadingContent>
+            <primitives:RadDataBoundListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="7*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Margin="10" MinWidth="90"
+                               VerticalAlignment="Center"
+                               Stretch="None"
+                               Source="{Binding Thumb,Converter={StaticResource ByteArrayToImageConverter},Mode=TwoWay}"
+                               MinHeight="90"
+                               HorizontalAlignment="Center"
+                               Grid.Column="0"/>
+                        <TextBlock VerticalAlignment="Center"  Grid.Column="1"
+                                       Text="{Binding Name,Mode=TwoWay}"  TextWrapping="Wrap" FontSize="20" Foreground="White"/>
+
+                    </Grid>
+
+                </DataTemplate>
+            </primitives:RadDataBoundListBox.ItemTemplate>
+            <primitives:RadDataBoundListBox.ItemContainerStyle>
+                <Style TargetType="primitives:RadDataBoundListBoxItem">
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Margin" Value="0,0,0,40"/>
+                </Style>
+            </primitives:RadDataBoundListBox.ItemContainerStyle>
+            <primitives:RadDataBoundListBox.EmptyContent>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="загрузка.."/>
+            </primitives:RadDataBoundListBox.EmptyContent>
+            <primitives:RadDataBoundListBox.ItemLoadingTemplate>
+                <DataTemplate>
+                    <primitives:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}" IsActive="True" Visibility="{Binding ElementName=ListBox,Path=DataContext.IsLoading,Converter={StaticResource VisibilityReverseConverter}}" Content=""/>
+                </DataTemplate>
+            </primitives:RadDataBoundListBox.ItemLoadingTemplate>
+        </primitives:RadDataBoundListBox>
+    </Grid>
+
+
+
+   
+</Page>

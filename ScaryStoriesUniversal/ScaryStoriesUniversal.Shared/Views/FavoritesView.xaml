@@ -8,9 +8,13 @@
     xmlns:controls="using:ScaryStoriesUniversal.Controls"
      NavigationCacheMode="Enabled"
     mc:Ignorable="d">
-    <StackPanel>
-        <controls:BackControl Margin="20"  Canvas.ZIndex="5" VerticalAlignment="Top" />
-        <controls:StoryVirtualizationListBox />
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <controls:BackControl Grid.Row="0" Title="{Binding ViewTitle}" Canvas.ZIndex="5"  />
+        <controls:StoryVirtualizationListBox Grid.Row="1"/>
+    </Grid>
 
 </Page>

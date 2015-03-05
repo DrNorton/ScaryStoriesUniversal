@@ -24,8 +24,8 @@ namespace StoryParser
         public MainWindow()
         {
             InitializeComponent();
-           // GetVk();
-            GetYoutube();
+            GetVk();
+            //GetYoutube();
         }
 
         private async void GetVk()
@@ -37,8 +37,8 @@ namespace StoryParser
         private void GetYoutube()
         {
             var youtubeParser = new YoutubeVideoParser();
-           
-            youtubeParser.Get();
+
+            youtubeParser.Placebolikeanart();
         }
 
        

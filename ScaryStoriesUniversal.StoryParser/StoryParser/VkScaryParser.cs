@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -18,8 +19,8 @@ namespace StoryParser
         {
             int res = 0;
             var scaryStories = new ScaryStoriesContext();
-            InsertCategory(scaryStories);
-            InsertSource(scaryStories);
+           //// InsertCategory(scaryStories);
+          //  InsertSource(scaryStories);
             int appId = 3383873; // указываем id приложения
             string email = "kozak_andrews@mail.ru"; // email для авторизации
             string password = "rianon90"; // пароль
@@ -29,7 +30,7 @@ namespace StoryParser
             api.Authorize(appId, email, password, settings); // авторизуемся
 
             var category = scaryStories.Categories.FirstOrDefault();
-            var source = scaryStories.Sources.FirstOrDefault();
+            var source = scaryStories.Sources.FirstOrDefault(x => x.Id == "8c49ac0e-f541-40af-a556-e3c4651f0194");
             int totalCount;
             var wallTotal = api.Wall.Get(-40529013, out totalCount, 100);
 
@@ -45,6 +46,7 @@ namespace StoryParser
                     {
                         InsertStory(scaryStories, post, category, source);
                         res++;
+                        Debug.WriteLine(res);
                     }
                     catch (Exception e)
                     {

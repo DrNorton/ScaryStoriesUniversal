@@ -7,16 +7,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     
     xmlns:primitives1="using:Telerik.UI.Xaml.Controls.Primitives"
+    xmlns:controls="using:ScaryStoriesUniversal.Controls"
     mc:Ignorable="d">
 
 
     <Grid>
-        
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <MediaElement x:Name="Player" Source="{Binding VideoSource,Mode=TwoWay}"/>
+        <controls:BackControl Grid.Row="0" Title="{Binding Name}" />
+        <MediaElement x:Name="Player" Grid.Row="1" Source="{Binding VideoSource,Mode=TwoWay}"/>
         <primitives1:RadBusyIndicator Canvas.ZIndex="5" Grid.RowSpan="5" IsActive="{Binding IsLoading}" Style="{StaticResource RadBusyIndicatorStyle}"/>
        
     </Grid>

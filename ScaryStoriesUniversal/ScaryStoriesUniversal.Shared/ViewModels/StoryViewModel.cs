@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Media.SpeechSynthesis;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 using Caliburn.Micro;
 using ScaryStoriesUniversal.Api;
 using ScaryStoriesUniversal.Api.Entities;
@@ -11,6 +15,7 @@ using ScaryStoriesUniversal.Database.Entities;
 using ScaryStoriesUniversal.Database.Repositories.Base;
 using ScaryStoriesUniversal.Helpers;
 using ScaryStoriesUniversal.Services;
+using ScaryStoriesUniversal.Services.Settings;
 using ScaryStoriesUniversal.ViewModels.Base;
 using Story = ScaryStoriesUniversal.Api.Entities.Story;
 
@@ -27,7 +32,12 @@ namespace ScaryStoriesUniversal.ViewModels
         private Photo _photo;
         private Visibility _toFavoriteButtonVisible=Visibility.Collapsed;
         private Visibility _deleteFromFavoriteButtonVisible=Visibility.Collapsed;
-        
+        private TextInfoSettings _textSettings;
+        private FontFamily _currentFont;
+        private MediaElement _speechPlayer;
+        private Visibility _playButtonVisibility=Visibility.Visible;
+        private Visibility _stopButtonVisibility=Visibility.Collapsed;
+
         public Story Story
         {
             get { return _story; }
@@ -48,8 +58,17 @@ namespace ScaryStoriesUniversal.ViewModels
             }
         }
 
+        public FontFamily CurrentFont
+        {
+            get { return _currentFont; }
+            set
+            {
+                _currentFont = value;
+                base.NotifyOfPropertyChange(()=>CurrentFont);
+            }
+        }
 
-        public StoryViewModel(INavigationService navigationService,IApiService apiService,StoryListIdsContainer idsContainer,IMessageProvider messageProvider,IFavoriteStoriesRepository favoriteStoriesRepository)
+        public StoryViewModel(INavigationService navigationService,IApiService apiService,StoryListIdsContainer idsContainer,IMessageProvider messageProvider,IFavoriteStoriesRepository favoriteStoriesRepository,ISettingsProvider settingsProvider)
             :base(navigationService)
         {
             _navigationService = navigationService;
@@ -57,6 +76,15 @@ namespace ScaryStoriesUniversal.ViewModels
             _idsContainer = idsContainer;
             _messageProvider = messageProvider;
             _favoriteStoriesRepository = favoriteStoriesRepository;
+            TextSettings=settingsProvider.TextSettings;
+            CurrentFont = new FontFamily(TextSettings.Font);
+            _speechPlayer=new MediaElement();
+            _navigationService.Navigating += _navigationService_Navigating;
+        }
+
+        void _navigationService_Navigating(object sender, Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs e)
+        {
+                StopPlaying();
         }
 
         public async void WebNavigateToUrl()
@@ -67,8 +95,14 @@ namespace ScaryStoriesUniversal.ViewModels
             }
         }
 
+        public void NavigateToSettings()
+        {
+            _navigationService.UriFor<SettingsViewModel>().Navigate();
+        }
+
         public async void Back()
         {
+            StopPlaying();
            await GetStoryById(_idsContainer.Back());
         }
 
@@ -105,10 +139,48 @@ namespace ScaryStoriesUniversal.ViewModels
             }
         }
 
+        public TextInfoSettings TextSettings
+        {
+            get { return _textSettings; }
+            set
+            {
+                _textSettings = value;
+                base.NotifyOfPropertyChange(()=>TextSettings);
+            }
+        }
+
+        public Visibility PlayButtonVisibility
+        {
+            get { return _playButtonVisibility; }
+            set
+            {
+                _playButtonVisibility = value;
+                base.NotifyOfPropertyChange(()=>PlayButtonVisibility);
+            }
+        }
+
+        public Visibility StopButtonVisibility
+        {
+            get { return _stopButtonVisibility; }
+            set
+            {
+                _stopButtonVisibility = value;
+                base.NotifyOfPropertyChange(()=>StopButtonVisibility);
+            }
+        }
+
 
         public async void Next()
         {
+            StopPlaying();
             await GetStoryById(_idsContainer.Next());
+        }
+
+        private void StopPlaying()
+        {
+            _speechPlayer.Stop();
+            StopButtonVisibility = Visibility.Collapsed;
+            PlayButtonVisibility = Visibility.Visible;
         }
 
         public async void ToFavorite()
@@ -121,6 +193,33 @@ namespace ScaryStoriesUniversal.ViewModels
         {
             await _favoriteStoriesRepository.DeleteAsync(Story.Id.ToString());
             IsUnfavoriteVisible();
+        }
+
+        public async void Synthese()
+        {
+            if (_speechPlayer.CurrentState == MediaElementState.Paused)
+            {
+                _speechPlayer.Play();
+                StopButtonVisibility = Visibility.Visible;
+                PlayButtonVisibility = Visibility.Collapsed;
+            }
+            else
+            {
+                var synth = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
+                var stream = await synth.SynthesizeTextToStreamAsync(Story.Text);
+                _speechPlayer.SetSource(stream, stream.ContentType);
+                _speechPlayer.Play();
+                PlayButtonVisibility=Visibility.Collapsed;
+                StopButtonVisibility = Visibility.Visible; 
+            }
+          
+        }
+
+        public async void StopSynthese()
+        {
+            _speechPlayer.Pause();
+             PlayButtonVisibility=Visibility.Visible;
+            StopButtonVisibility = Visibility.Collapsed;
         }
 
         protected async override void OnViewReady(object view)
@@ -157,6 +256,8 @@ namespace ScaryStoriesUniversal.ViewModels
             {
                 IsUnfavoriteVisible();
             }
+            PlayButtonVisibility = Visibility.Visible;
+            StopButtonVisibility = Visibility.Collapsed;
         }
 
         private void IsUnfavoriteVisible()

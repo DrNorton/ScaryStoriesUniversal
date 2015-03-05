@@ -19,7 +19,7 @@
             x:Name="ListBox"
             ItemsSource="{Binding Items,Mode=TwoWay}"
             IsAsyncBalanceEnabled="True"
-            CacheMode="BitmapCache"
+            
             EmptyContentDisplayMode="DataSourceEmpty"
             IncrementalLoadingMode="Auto"
             SelectedItem="{Binding SelectedItem,Mode=TwoWay}">
@@ -27,25 +27,29 @@
             <primitives1:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}"/>
             </primitives1:RadDataBoundListBox.ItemLoadingContent>
             <primitives1:RadDataBoundListBox.ItemTemplate>
-                <DataTemplate>
+             <DataTemplate >
+                <Border Margin="15" BorderBrush="{StaticResource LightAdditionalColor}" BorderThickness="3" Background="{StaticResource AdditionalColor}" Grid.Column="2">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"/>
-                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Image Margin="10" MinWidth="90"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Image 
                                VerticalAlignment="Center"
-                               Stretch="Fill"
+                               Stretch="None"
                                Source="{Binding Thumb,Converter={StaticResource ByteArrayToImageConverter},Mode=TwoWay}"
-                               MinHeight="90"
                                HorizontalAlignment="Center"
                                Grid.Column="0"/>
-                        <TextBlock VerticalAlignment="Center"  Grid.Column="1"
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1"
                                        Text="{Binding Name,Mode=TwoWay}"  TextWrapping="Wrap" FontSize="20" Foreground="White"/>
 
                     </Grid>
-
-                </DataTemplate>
+                </Border>
+            </DataTemplate>
             </primitives1:RadDataBoundListBox.ItemTemplate>
             <primitives1:RadDataBoundListBox.ItemContainerStyle>
                 <Style TargetType="primitives1:RadDataBoundListBoxItem">
@@ -55,7 +59,7 @@
                 </Style>
             </primitives1:RadDataBoundListBox.ItemContainerStyle>
             <primitives1:RadDataBoundListBox.EmptyContent>
-              <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Нет данных"/>
+              <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="загрузка.."/>
             </primitives1:RadDataBoundListBox.EmptyContent>
             <primitives1:RadDataBoundListBox.ItemLoadingTemplate>
                 <DataTemplate>
@@ -63,7 +67,7 @@
                 </DataTemplate>
             </primitives1:RadDataBoundListBox.ItemLoadingTemplate>
         <primitives1:RadDataBoundListBox.VirtualizationStrategyDefinition>
-            <primitives1:DynamicGridVirtualizationStrategyDefinition  Orientation="Horizontal"/>
+            <primitives1:DynamicGridVirtualizationStrategyDefinition StackCount="4" Orientation="Horizontal"/>
         </primitives1:RadDataBoundListBox.VirtualizationStrategyDefinition>
 
     </primitives1:RadDataBoundListBox>

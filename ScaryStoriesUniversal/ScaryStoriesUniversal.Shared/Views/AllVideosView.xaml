@@ -12,7 +12,11 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-       
-        <controls:StoryVirtualizationListBox />
+       <Grid.RowDefinitions>
+           <RowDefinition Height="Auto"/>
+           <RowDefinition/>
+       </Grid.RowDefinitions>
+        <controls:BackControl Grid.Row="0" Title="Видео" />
+        <controls:StoryVirtualizationListBox Grid.Row="1" />
     </Grid>
 </Page>

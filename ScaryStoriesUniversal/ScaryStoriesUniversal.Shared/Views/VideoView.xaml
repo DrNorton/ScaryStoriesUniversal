@@ -6,16 +6,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:micro="using:Caliburn.Micro"
+    xmlns:controls="using:ScaryStoriesUniversal.Controls"
     mc:Ignorable="d">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="White" FontSize="30" Text="{Binding Video.Name}"/>
-        <Image  Grid.Row="1" Source="{Binding Video.Image,Converter={StaticResource ByteArrayToImageConverter}}"  micro:Message.Attach="[Event Tapped] = [Action VideoThumbTap()]" />
+        <controls:BackControl Grid.Row="0" Title="{Binding Video.Name}" />
+        <Image Stretch="None" HorizontalAlignment="Left" Grid.Row="1" Source="{Binding Video.Image,Converter={StaticResource ByteArrayToImageConverter}}"  micro:Message.Attach="[Event Tapped] = [Action VideoThumbTap()]" />
         <ScrollViewer Grid.Row="2">
             <TextBlock Margin="5"  FontSize="15" Text="{Binding Video.Text}" TextWrapping="Wrap"/>
         </ScrollViewer>

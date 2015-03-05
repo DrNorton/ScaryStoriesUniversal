@@ -19,6 +19,7 @@ namespace ScaryStoriesUniversal.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
+            base.ViewTitle = "Источники";
         }
 
 

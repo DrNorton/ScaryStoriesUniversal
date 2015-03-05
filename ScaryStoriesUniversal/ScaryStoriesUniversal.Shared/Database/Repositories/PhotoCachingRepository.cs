@@ -29,5 +29,10 @@ namespace ScaryStoriesUniversal.Database.Repositories
             //SELECT * FROM table ORDER BY RANDOM() LIMIT 1;
             return await _connection.QueryAsync<PhotoEntity>("SELECT * FROM PhotoEntity ORDER BY RANDOM() LIMIT 1");
         }
+
+        public async Task<int> DeleteAll()
+        {
+            return await _connection.ExecuteScalarAsync<int>("Delete From PhotoEntity");
+        }
     }
 }

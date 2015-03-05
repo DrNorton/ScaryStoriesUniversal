@@ -46,7 +46,7 @@ namespace ScaryStoriesUniversal.ViewModels
 
         public void VideoThumbTap()
         {
-         _navigationService.UriFor<VideoPlayerViewModel>().WithParam(x=>x.Url,_video.Url.ToString()).Navigate();
+         _navigationService.UriFor<VideoPlayerViewModel>().WithParam(x=>x.Url,_video.Url.ToString()).WithParam(y=>y.Name,_video.Name).Navigate();
         }
 
     }

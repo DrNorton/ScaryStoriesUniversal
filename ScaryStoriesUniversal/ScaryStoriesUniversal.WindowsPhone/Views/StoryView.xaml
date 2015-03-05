@@ -10,6 +10,7 @@
     xmlns:micro="using:Caliburn.Micro"
     xmlns:primitives1="using:Telerik.UI.Xaml.Controls.Primitives"
     xmlns:controls="using:ScaryStoriesUniversal.Controls"
+    xmlns:windowsPhone81="using:Microsoft.AdMediator.WindowsPhone81"
     mc:Ignorable="d">
     <Page.Resources>
         <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
@@ -19,18 +20,20 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <primitives1:RadBusyIndicator Grid.RowSpan="5" IsActive="{Binding IsLoading}" Style="{StaticResource RadBusyIndicatorStyle}"/>
-        <controls:BackControl/>
-        <ScrollViewer Grid.Row="1">
+        <primitives1:RadBusyIndicator Grid.RowSpan="6" IsActive="{Binding IsLoading}" Style="{StaticResource RadBusyIndicatorStyle}"/>
+        <windowsPhone81:AdMediatorControl x:Name="AdMediator2" Id="AdMediator-Id-11BB90C8-D300-4A37-B7ED-52391AA5EAD4"  Grid.Row="0"/>
+        <controls:BackControl Grid.Row="1" Title="{Binding Story.Name}"/>
+        <ScrollViewer Grid.Row="2">
             <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="7*"/>
                 </Grid.RowDefinitions>
                 <Image  Grid.Row="0" Source="{Binding Photo.Image,Converter={StaticResource ByteArrayToImageConverter}}"  micro:Message.Attach="[Event Tapped] = [Action ImageTap()]" />
-                <TextBlock Margin="5" Grid.Row="1" FontSize="15" Text="{Binding Story.Text}" TextWrapping="Wrap"/>
+                <TextBlock Margin="5" Grid.Row="1" FontFamily="{Binding CurrentFont,Mode=TwoWay}" LineHeight="{Binding TextSettings.LineHeight,Mode=TwoWay}" FontSize="{Binding TextSettings.Size,Mode=TwoWay}" Text="{Binding Story.Text}" TextWrapping="Wrap"/>
             </Grid>
         </ScrollViewer>
     </Grid>
@@ -38,11 +41,15 @@
     <Page.BottomAppBar>
         <CommandBar IsOpen="True">
             <AppBarButton x:Name="Back" Label="предыдущее" Icon="Back" />
+            <AppBarButton x:Name="Synthese" Label="рассказать" Visibility="{Binding PlayButtonVisibility}" Icon="Play" />
+            <AppBarButton x:Name="StopSynthese" Label="закончить" Icon="Pause" Visibility="{Binding StopButtonVisibility}" />
             <AppBarButton x:Name="DeleteFromFavorite" Visibility="{Binding DeleteFromFavoriteButtonVisible}"  Icon="UnFavorite" />
             <AppBarButton x:Name="ToFavorite" Visibility="{Binding ToFavoriteButtonVisible}"  Icon="Favorite" />
             <AppBarButton x:Name="Next" Label="следущее" Icon="Forward" />
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="WebNavigateToUrl" Label="на страницу" Icon="Globe"/>
+                <AppBarButton x:Name="NavigateToSettings" Label="настройки" Icon="Globe"/>
+              
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

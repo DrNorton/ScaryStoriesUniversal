@@ -14,6 +14,7 @@ namespace ScaryStoriesUniversal.ViewModels
     {
         private string _videoSource;
         public string Url { get; set; }
+        public string Name { get; set; }
 
         public string VideoSource
         {

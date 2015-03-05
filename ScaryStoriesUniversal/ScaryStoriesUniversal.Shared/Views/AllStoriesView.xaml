@@ -20,14 +20,13 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <controls:BackControl/>
+        <controls:BackControl Grid.Row="0" Title="{Binding ViewTitle}"/>
         <controls:StoryVirtualizationListBox Grid.Row="1" />
     </Grid>
     
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar Style="{StaticResource CommandBarStyle}">
             <AppBarButton x:Name="NavigateToFind"  Label="поиск" Icon="Find" />
-        
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

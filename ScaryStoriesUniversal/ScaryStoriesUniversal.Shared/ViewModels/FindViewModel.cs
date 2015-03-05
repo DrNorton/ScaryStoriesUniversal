@@ -12,8 +12,7 @@ using ScaryStoriesUniversal.ViewModels.Base;
 
 namespace ScaryStoriesUniversal.ViewModels
 {
-    public class FindViewModel
-        //: VirtualizationListViewModel<Story>
+    public class FindViewModel: VirtualizationListViewModel<Story>
     {
 
         private readonly INavigationService _navigationService;
@@ -24,6 +23,7 @@ namespace ScaryStoriesUniversal.ViewModels
        
 
         public FindViewModel(INavigationService navigationService, IApiService apiService, StoryListIdsContainer idsContainer)
+            :base(navigationService)
         {
             _navigationService = navigationService;
             _apiService = apiService;
@@ -37,15 +37,15 @@ namespace ScaryStoriesUniversal.ViewModels
             set
             {
                 _pattern = value;
-                Clear();
-               // base.NotifyOfPropertyChange(()=>Pattern);
+              
+                base.NotifyOfPropertyChange(()=>Pattern);
             }
         }
 
         private void Clear()
         {
-          //  _currentEndIndex = 0;
-          //  Items.Clear();
+            _currentEndIndex = 0;
+            base.Clear();
         }
 
       
@@ -54,7 +54,7 @@ namespace ScaryStoriesUniversal.ViewModels
         {
             if (!String.IsNullOrEmpty(_pattern))
             {
-                //await GetItems();
+                Clear();
             }
         }
 
@@ -82,5 +82,22 @@ namespace ScaryStoriesUniversal.ViewModels
         //    _idsContainer.Position = Items.IndexOf(item);
         //    _navigationService.UriFor<StoryViewModel>().Navigate();
         //}
+
+        public async override Task<IEnumerable<Story>> GetItems(uint count)
+        {
+              if (!String.IsNullOrEmpty(_pattern))
+              {
+                  base.Wait(true);
+                  var stories= await _apiService.FindStories(_pattern, (int)count, _currentEndIndex);
+                  base.Wait(false);
+                  return stories;
+              }
+            return null;
+        }
+
+        public override void OnSelectItem(Story item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

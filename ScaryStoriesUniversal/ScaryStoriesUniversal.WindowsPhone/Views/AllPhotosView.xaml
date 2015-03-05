@@ -12,14 +12,22 @@
     xmlns:converters="using:ScaryStoriesUniversal.Converters"
     xmlns:primitives1="using:Telerik.UI.Xaml.Controls.Primitives"
     xmlns:core="using:Telerik.Core"
+    xmlns:controls="using:ScaryStoriesUniversal.Controls"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="WrapModeDataTemplate">
             <Image Source="{Binding Thumb,Converter={StaticResource ByteArrayToImageConverter},Mode=TwoWay}" Width="85" Height="85" Stretch="UniformToFill" Margin="5"/>
         </DataTemplate>
     </Page.Resources>
-    <StackPanel>
-        <primitives1:RadDataBoundListBox Grid.Row="0"
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <controls:BackControl   Canvas.ZIndex="5" VerticalAlignment="Top" />
+        <primitives1:RadDataBoundListBox Grid.Row="1"
             
             IsAsyncBalanceEnabled="True"
             x:Name="listBox" 
@@ -45,7 +53,5 @@
                 <primitives1:WrapVirtualizationStrategyDefinition Orientation="Horizontal"/>
             </primitives1:RadDataBoundListBox.VirtualizationStrategyDefinition>
         </primitives1:RadDataBoundListBox>
-    </StackPanel>
-
-     
+    </Grid>
 </Page>

@@ -259,7 +259,9 @@
   <ItemGroup>
     <Content Include="Performance\Microsoft.ServiceBus.MessagingPerformanceCounters.man" />
     <None Include="Properties\PublishProfiles\mobile%24StoriesMobileService.pubxml" />
+    <None Include="Properties\PublishProfiles\StoriesMobileService - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\StoriesMobileService - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\StoriesMobileService - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ScaryStories.MobileService.Entity\ScaryStories.MobileService.Entity.csproj">

@@ -9,5 +9,6 @@ namespace ScaryStoriesUniversal.Database.Repositories.Base
     {
         Task InsertAsync(PhotoEntity photo);
         Task<IEnumerable<PhotoEntity>> GetRandomPhoto();
+        Task<int> DeleteAll();
     }
 }

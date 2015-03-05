@@ -15,7 +15,7 @@ namespace ScaryStoriesUniversal.Api.Tests
         [TestFixtureSetUp]
         public void SetUp()
         {
-            _apiService = new ApiService(@"http://storiesmobileservice.azure-mobile.net/", "tKroqvWTOqDmJGvBvowSrMSpGYFpGH69");
+            _apiService = new ApiService(@"https://storiesmobileservice.azure-mobile.net/", "eOxFathFeOfvquGBFoAZmDsGJuifQH42");
             //_apiService = new ApiService(@"http://localhost:16781", null);
         }
 

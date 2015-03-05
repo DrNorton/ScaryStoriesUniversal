@@ -22,6 +22,7 @@
       <DependentUpon>BackControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ByteArrayToImageConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\EmptyNullCollectionVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VisibilityReverseConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\DataAccess\DbConnection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\DataAccess\IDbConnection.cs" />
@@ -38,8 +39,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\HelpersExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LoadMoreControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StoryListIdsContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\WindowDimensionBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IMessageProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MessageProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\ISettingsProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\SettingsProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\StorageHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\StorageSettingsSaver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\TextInfoSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AllPhotosViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AllStoriesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AllVideosViewModel.cs" />
@@ -50,13 +57,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PhotoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AllSourcesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SourceViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StoryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoPlayerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\AllSourcesView.xaml.cs">
-      <DependentUpon>AllSourcesView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\AllStoriesView.xaml.cs">
       <DependentUpon>AllStoriesView.xaml</DependentUpon>
     </Compile>
@@ -69,11 +74,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\FindView.xaml.cs">
       <DependentUpon>FindView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\PhotoView.xaml.cs">
       <DependentUpon>PhotoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\SourceView.xaml.cs">
       <DependentUpon>SourceView.xaml</DependentUpon>
@@ -94,10 +99,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\AllSourcesView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\AllStoriesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,11 +115,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MainView.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Views\PhotoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\PhotoView.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Views\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,11 +142,14 @@
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\AllStories.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\back.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Sources.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\favorites.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Search.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Images.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\LoadMore.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Search.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Sources.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\stories.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Assets\Hauted-House-by-Potapova1920.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

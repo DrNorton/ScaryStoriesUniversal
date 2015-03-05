@@ -8,47 +8,60 @@
     xmlns:micro="using:Caliburn.Micro"
     xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:controls1="using:ScaryStoriesUniversal.Controls"
+    xmlns:converters="using:ScaryStoriesUniversal.Converters"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:helpers="using:ScaryStoriesUniversal.Helpers"
     NavigationCacheMode="Disabled"
     mc:Ignorable="d">
-
-    <Hub>
-        <HubSection >
-            <DataTemplate>
+   
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <controls1:BackControl Title="{Binding ViewTitle}" />
+        <Grid Grid.Row="1" Background="{StaticResource LightAdditionalColor}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image  MaxWidth="100" MaxHeight="100" HorizontalAlignment="Left" Margin="10" Source="{Binding Source.Image,Converter={StaticResource ByteArrayToImageConverter}}" Stretch="UniformToFill"/>
+            <StackPanel Grid.Column="1" micro:Message.Attach="[Event Tapped] = [Action WebNavigateToUrl()]">
+                <TextBlock Text="{Binding Source.Name}" Margin="2" FontSize="30" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding Source.Url}" Margin="2" FontSize="15" TextWrapping="Wrap" FontStyle="Italic" Foreground="GhostWhite"/>
+                <StackPanel>
                     <Grid>
-                       <Grid.RowDefinitions>
-                           <RowDefinition Height="Auto"/>
-                           <RowDefinition Height="Auto"/>
-                           <RowDefinition/>
-                       </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                           <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                        <Image  MaxWidth="100" MaxHeight="100" HorizontalAlignment="Left" Margin="10" Source="{Binding Source.Image,Converter={StaticResource ByteArrayToImageConverter}}" Stretch="UniformToFill"/>
-                        <StackPanel Grid.Column="1" micro:Message.Attach="[Event Tapped] = [Action WebNavigateToUrl()]">
-                            <TextBlock Text="{Binding Source.Name}" Margin="2" FontSize="30" TextWrapping="Wrap"/>
-                            <TextBlock Text="{Binding Source.Url}" Margin="2" FontSize="15" TextWrapping="Wrap" FontStyle="Italic" Foreground="Gray"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <TextBlock Margin="0,0,5,0" Text="Всего историй:" FontSize="15"/>
+                            <TextBlock Text="{Binding TotalStoriesCount}" FontSize="15" FontStyle="Normal"/>
                         </StackPanel>
-                    <StackPanel Margin="10,0,0,0" Grid.Row="1">
-                        <Grid>
-                         
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                <TextBlock Margin="0,0,5,0" Text="Всего историй:" FontSize="15"/>
-                                <TextBlock Text="{Binding TotalStoriesCount}" FontSize="15" FontStyle="Normal"/>
-                            </StackPanel>
-                            <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                <TextBlock Margin="0,0,5,0" Text="Всего видео:" FontSize="15"/>
-                                <TextBlock Text="{Binding SourceVideoViewModel.TotalVideosCount}" FontSize="15"  FontStyle="Normal"/>
-                         </StackPanel>
-                        </Grid>
-                     
+                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                            <TextBlock Margin="0,0,5,0" Text="Всего видео:" FontSize="15"/>
+                            <TextBlock Text="{Binding SourceVideoViewModel.TotalVideosCount}" FontSize="15"  FontStyle="Normal"/>
+                        </StackPanel>
+                    </Grid>
 
-                    </StackPanel>
-                    <primitives:RadDataBoundListBox 
+
+                </StackPanel>
+            </StackPanel>
+         
+        </Grid>
+        <Hub Grid.Row="2" >
+            
+            <HubSection Header="Фото">
+                <DataTemplate>
+                   <primitives:RadDataBoundListBox 
                         x:Name="ListBox" Grid.Row="2" Grid.ColumnSpan="2"
                         ItemsSource="{Binding Items,Mode=TwoWay}"
                         IsAsyncBalanceEnabled="True"
@@ -56,24 +69,83 @@
                         EmptyContentDisplayMode="DataSourceNull"
                         IncrementalLoadingMode="Auto"
                         SelectedItem="{Binding SelectedItem,Mode=TwoWay}">
-                        <primitives:RadDataBoundListBox.ItemLoadingContent>
-                            <primitives:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}"/>
-                        </primitives:RadDataBoundListBox.ItemLoadingContent>
-                        <primitives:RadDataBoundListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel >
-                                    <Image Margin="10" MaxWidth="90"
+                            <primitives:RadDataBoundListBox.ItemLoadingContent>
+                                <primitives:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}"/>
+                            </primitives:RadDataBoundListBox.ItemLoadingContent>
+                            <primitives:RadDataBoundListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel >
+                                        <Image Margin="10" MaxWidth="90"
                                VerticalAlignment="Center"
                                Stretch="Fill"
                                Source="{Binding Thumb,Converter={StaticResource ByteArrayToImageConverter},Mode=TwoWay}"
                                MaxHeight="90"
                                HorizontalAlignment="Center"
                                Grid.Column="0"/>
-                                    <TextBlock VerticalAlignment="Center"  
+                                        <TextBlock VerticalAlignment="Center"  
                                        Text="{Binding Name,Mode=TwoWay}" Width="90" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="15"  Foreground="White"/>
 
-                                </StackPanel>
+                                    </StackPanel>
 
+                                </DataTemplate>
+                            </primitives:RadDataBoundListBox.ItemTemplate>
+                            <primitives:RadDataBoundListBox.ItemContainerStyle>
+                                <Style TargetType="primitives:RadDataBoundListBoxItem">
+                                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Margin" Value="0,0,0,40"/>
+                                </Style>
+                            </primitives:RadDataBoundListBox.ItemContainerStyle>
+                            <primitives:RadDataBoundListBox.EmptyContent>
+                                <TextBlock FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Нет историй"/>
+                            </primitives:RadDataBoundListBox.EmptyContent>
+                            <primitives:RadDataBoundListBox.ItemLoadingTemplate>
+                                <DataTemplate>
+                                    <primitives:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}" IsActive="True" Content=""/>
+                                </DataTemplate>
+                            </primitives:RadDataBoundListBox.ItemLoadingTemplate>
+                            <primitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
+                                <primitives:WrapVirtualizationStrategyDefinition Orientation="Horizontal"/>
+                            </primitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
+                        </primitives:RadDataBoundListBox>
+                </DataTemplate>
+                <interactivity:Interaction.Behaviors>
+                    <helpers:WindowDimensionBehavior WidthMultiple="2" WidthPercentage="0.4"/>
+                </interactivity:Interaction.Behaviors>
+            </HubSection>
+            <HubSection Header="Видео" >
+                <interactivity:Interaction.Behaviors>
+                    <helpers:WindowDimensionBehavior WidthMultiple="2" WidthPercentage="0.4"/>
+                </interactivity:Interaction.Behaviors>
+                <DataTemplate>
+                    <primitives:RadDataBoundListBox 
+                        x:Name="ListBox" Grid.Row="1" Grid.ColumnSpan="2"
+                        ItemsSource="{Binding SourceVideoViewModel.Items,Mode=TwoWay}"
+                        IsAsyncBalanceEnabled="True"
+                        CacheMode="BitmapCache"
+                         IncrementalLoadingMode="Auto"
+                        SelectedItem="{Binding SourceVideoViewModel.SelectedItem,Mode=TwoWay}">
+                        <primitives:RadDataBoundListBox.ItemLoadingContent>
+                            <primitives:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}"/>
+                        </primitives:RadDataBoundListBox.ItemLoadingContent>
+                        <primitives:RadDataBoundListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Margin="10" MaxWidth="90"
+                                       VerticalAlignment="Center"
+                                       Stretch="Fill"
+                                       Source="{Binding Thumb,Converter={StaticResource ByteArrayToImageConverter},Mode=TwoWay}"
+                                       MaxHeight="90"
+                                       HorizontalAlignment="Center"
+                                       Grid.Column="0"/>
+                                    <TextBlock Grid.Column="1" VerticalAlignment="Center"  
+                                       Text="{Binding Name,Mode=TwoWay}"  TextWrapping="Wrap" FontSize="15"  Foreground="White"/>
+
+                                </Grid>
                             </DataTemplate>
                         </primitives:RadDataBoundListBox.ItemTemplate>
                         <primitives:RadDataBoundListBox.ItemContainerStyle>
@@ -84,74 +156,19 @@
                             </Style>
                         </primitives:RadDataBoundListBox.ItemContainerStyle>
                         <primitives:RadDataBoundListBox.EmptyContent>
-                            <TextBlock FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Нет историй"/>
+                            <TextBlock FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Нет видео"/>
                         </primitives:RadDataBoundListBox.EmptyContent>
                         <primitives:RadDataBoundListBox.ItemLoadingTemplate>
                             <DataTemplate>
                                 <primitives:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}" IsActive="True" Content=""/>
                             </DataTemplate>
                         </primitives:RadDataBoundListBox.ItemLoadingTemplate>
-                        <primitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
-                            <primitives:WrapVirtualizationStrategyDefinition/>
-                        </primitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
+                        
                     </primitives:RadDataBoundListBox>
-                </Grid>
-            </DataTemplate>
-        </HubSection>
-
-        <HubSection Header="Видео">
-           
-            <DataTemplate>
-                <primitives:RadDataBoundListBox 
-                        x:Name="ListBox" Grid.Row="1" Grid.ColumnSpan="2"
-                        ItemsSource="{Binding SourceVideoViewModel.Items,Mode=TwoWay}"
-                        IsAsyncBalanceEnabled="True"
-                        CacheMode="BitmapCache"
-                         IncrementalLoadingMode="Auto"
-                        SelectedItem="{Binding SourceVideoViewModel.SelectedItem,Mode=TwoWay}">
-                    <primitives:RadDataBoundListBox.ItemLoadingContent>
-                        <primitives:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}"/>
-                    </primitives:RadDataBoundListBox.ItemLoadingContent>
-                    <primitives:RadDataBoundListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel >
-                                <Image Margin="10" MaxWidth="90"
-                               VerticalAlignment="Center"
-                               Stretch="Fill"
-                               Source="{Binding Thumb,Converter={StaticResource ByteArrayToImageConverter},Mode=TwoWay}"
-                               MaxHeight="90"
-                               HorizontalAlignment="Center"
-                               Grid.Column="0"/>
-                                <TextBlock VerticalAlignment="Center"  
-                                       Text="{Binding Name,Mode=TwoWay}" Width="90" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="15"  Foreground="White"/>
-
-                            </StackPanel>
-
-                        </DataTemplate>
-                    </primitives:RadDataBoundListBox.ItemTemplate>
-                    <primitives:RadDataBoundListBox.ItemContainerStyle>
-                        <Style TargetType="primitives:RadDataBoundListBoxItem">
-                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                            <Setter Property="Margin" Value="0,0,0,40"/>
-                        </Style>
-                    </primitives:RadDataBoundListBox.ItemContainerStyle>
-                    <primitives:RadDataBoundListBox.EmptyContent>
-                            <TextBlock FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Нет видео"/>
-                    </primitives:RadDataBoundListBox.EmptyContent>
-                    <primitives:RadDataBoundListBox.ItemLoadingTemplate>
-                        <DataTemplate>
-                            <primitives:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}" IsActive="True" Content=""/>
-                        </DataTemplate>
-                    </primitives:RadDataBoundListBox.ItemLoadingTemplate>
-                    <primitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
-                        <primitives:WrapVirtualizationStrategyDefinition/>
-                    </primitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
-                </primitives:RadDataBoundListBox>
-            </DataTemplate>
-        </HubSection>
-    </Hub>
-
-    
+                </DataTemplate>
+            </HubSection>
+        </Hub>
+    </Grid>
+   
    
 </Page>

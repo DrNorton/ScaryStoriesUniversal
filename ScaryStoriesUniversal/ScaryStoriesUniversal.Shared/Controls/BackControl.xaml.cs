@@ -19,6 +19,20 @@ namespace ScaryStoriesUniversal.Controls
 {
     public sealed partial class BackControl : UserControl
     {
+        public string Title
+        {
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
+        }
+
+        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(BackControl), new PropertyMetadata(null, TitleChanged));
+
+        private static void TitleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var self = d as BackControl;
+            self.Title = ((string)e.NewValue);
+            self.TextBlock.Text = self.Title;
+        }
         public BackControl()
         {
             this.InitializeComponent();

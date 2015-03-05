@@ -9,18 +9,18 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <StackPanel  Orientation="Horizontal"  HorizontalAlignment="Left"  Grid.Row="0">
-        <Button Command="{Binding BackNavigationCommand}" >
+    <StackPanel Orientation="Horizontal" Background="#2C434A">
+        <Button Margin="10"  Command="{Binding BackNavigationCommand}" >
             <Image Source="/Assets/back.png" Width="50" Height="50"/>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Grid>
-                        <Ellipse Width="50" Height="50"  Stroke="White" StrokeThickness="4"  Fill="Black"/>
+                        <Ellipse Width="50" Height="50"  Stroke="White" StrokeThickness="4"  Fill="Transparent"/>
                         <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Grid>
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <TextBlock Margin="10,0,0,0" Text="{Binding ViewTitle}" VerticalAlignment="Center" Foreground="White" FontSize="30"/>
+        <TextBlock Margin="0" x:Name="TextBlock" VerticalAlignment="Center" Foreground="White" FontSize="30"/>
     </StackPanel>
 </UserControl>

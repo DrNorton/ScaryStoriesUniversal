@@ -55,7 +55,7 @@
                 </Style>
             </primitives1:RadDataBoundListBox.ItemContainerStyle>
             <primitives1:RadDataBoundListBox.EmptyContent>
-              <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Нет данных"/>
+              <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="загрузка.."/>
             </primitives1:RadDataBoundListBox.EmptyContent>
             <primitives1:RadDataBoundListBox.ItemLoadingTemplate>
                 <DataTemplate>

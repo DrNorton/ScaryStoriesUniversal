@@ -3,11 +3,15 @@
                    
                     xmlns:primitives1="using:Telerik.UI.Xaml.Controls.Primitives">
     <Color x:Key="BackgroundColor">Black</Color>
+    <SolidColorBrush x:Key="AdditionalColor"
+                         Color="#2C434A" />
+    <SolidColorBrush x:Key="LightAdditionalColor"
+                         Color="#467585" />
     
- 
+
     <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}" />
     <Style x:Key="RadBusyIndicatorStyle" TargetType="primitives1:RadBusyIndicator">
-        <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="Foreground" Value="{StaticResource LightAdditionalColor}"/>
         <Setter Property="Background" Value="Black"/>
         <Setter Property="AnimationStyle" Value="AnimationStyle7"/>
         <Setter Property="Content" Value="Загрузка.."/>
@@ -17,7 +21,7 @@
         <Setter Property="Canvas.ZIndex" Value="999"/>
         <Setter Property="Opacity" Value="0.9"/>
     </Style>
-
+    
     <SolidColorBrush x:Key="BlackBrush"
                          Color="#000000" />
     <SolidColorBrush x:Key="DarkGreenBrush"
@@ -27,8 +31,16 @@
     <SolidColorBrush x:Key="WhiteBrush"
                          Color="#FFFFFF" />
 
-
-
+    <Style x:Key="ControlContextualInfoTextBlockStyle" TargetType="TextBlock">
+      <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="Foreground" Value="Gray"/>
+    </Style>
+    
+    <Style x:Key="CommandBarStyle" TargetType="CommandBar">
+        <Setter Property="IsOpen" Value="True"/>
+        <Setter Property="Background" Value="{StaticResource AdditionalColor}"/>
+    </Style>
 
     <Style x:Key="TileButtonStyle"
                TargetType="Button">

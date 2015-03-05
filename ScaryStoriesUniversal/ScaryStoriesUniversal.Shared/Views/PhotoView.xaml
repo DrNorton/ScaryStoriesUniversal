@@ -16,12 +16,12 @@
         <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
     </Page.Resources>
     <Grid   Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls:BackControl Margin="20"  Canvas.ZIndex="5" VerticalAlignment="Top" />
+        <controls:BackControl   Canvas.ZIndex="5" VerticalAlignment="Top" />
         <Image Source="{Binding Photo.Image,Converter={StaticResource ByteArrayToImageConverter}}"/>
     </Grid>
 
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar Style="{StaticResource CommandBarStyle}">
             <AppBarButton x:Name="Save" Label="сохранить" Icon="Save" />
         </CommandBar>
     </Page.BottomAppBar>

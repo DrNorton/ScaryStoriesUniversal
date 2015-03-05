@@ -21,21 +21,30 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
-         
+
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="White" FontSize="30" Text="Поиск"/>
+        <controls:BackControl Title="Поиск" Grid.ColumnSpan="2" Grid.Row="0"/>
         <Grid  Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox Margin="5" VerticalAlignment="Center" Text="{Binding Pattern,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Margin="5" VerticalAlignment="Center"  Grid.Column="1" Width="32" Height="32" x:Name="Find">
-                <Image Source="/Assets/Search.png"/>
+            <TextBox Grid.ColumnSpan="2" Margin="5" VerticalAlignment="Center" Text="{Binding Pattern,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Margin="10"  HorizontalAlignment="Right"  MinWidth="0" MinHeight="0" VerticalAlignment="Center"   Grid.Column="1" Width="32" Height="32" x:Name="Find">
+                <Image Width="32" Height="32" Source="/Assets/Search.png"/>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border  Width="40" Height="40"  Background="Black"/>
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
             </Button>
-        </Grid> 
-       
-       
+        </Grid>
+
+
         <controls:StoryVirtualizationListBox    Grid.Row="2"/>
     </Grid>
 </Page>

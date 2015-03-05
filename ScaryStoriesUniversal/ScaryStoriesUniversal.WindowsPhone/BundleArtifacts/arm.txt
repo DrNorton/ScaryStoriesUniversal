@@ -1,0 +1,5 @@
+MainPackage=C:\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.WindowsPhone\bin\ARM\Release\ScaryStoriesUniversal.WindowsPhone_1.1.0.8_Bundle\ScaryStoriesUniversal.WindowsPhone_1.1.0.8_ARM.appx
+SymbolPackage=C:\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.WindowsPhone\AppPackages\ScaryStoriesUniversal.WindowsPhone_1.1.0.8_Test\ScaryStoriesUniversal.WindowsPhone_1.1.0.8_ARM.appxsym
+ResourcePack=C:\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.WindowsPhone\bin\ARM\Release\ScaryStoriesUniversal.WindowsPhone_1.1.0.8_Bundle\ScaryStoriesUniversal.WindowsPhone_1.1.0.8_language-ru.appx
+ResourcePack=C:\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.WindowsPhone\bin\ARM\Release\ScaryStoriesUniversal.WindowsPhone_1.1.0.8_Bundle\ScaryStoriesUniversal.WindowsPhone_1.1.0.8_scale-100.appx
+ResourcePack=C:\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.WindowsPhone\bin\ARM\Release\ScaryStoriesUniversal.WindowsPhone_1.1.0.8_Bundle\ScaryStoriesUniversal.WindowsPhone_1.1.0.8_scale-140.appx

@@ -1,0 +1,29 @@
+﻿<Page
+    x:Class="ScaryStoriesUniversal.Views.AllSourcesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ScaryStoriesUniversal.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:ScaryStoriesUniversal.Controls"
+    xmlns:converters="using:ScaryStoriesUniversal.Converters"
+    xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:VisibilityReverseConverter x:Name="VisibilityReverseConverter"/>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <controls:BackControl Title="{Binding ViewTitle}" />
+         <controls:StoryVirtualizationListBox Grid.Row="1"/>
+    </Grid>
+
+
+
+   
+</Page>

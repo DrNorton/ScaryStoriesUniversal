@@ -26,6 +26,7 @@ namespace ScaryStoriesUniversal.ViewModels
             _favoriteStoriesRepository = favoriteStoriesRepository;
             _idsContainer = idsContainer;
             _navigationService = navigationService;
+            base.ViewTitle = "Избранное";
         }
 
         public async override System.Threading.Tasks.Task<IEnumerable<FavoriteStory>> GetItems(uint count)

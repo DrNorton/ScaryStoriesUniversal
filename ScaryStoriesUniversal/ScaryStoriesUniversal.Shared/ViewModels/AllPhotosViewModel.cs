@@ -22,6 +22,7 @@ namespace ScaryStoriesUniversal.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
+            base.ViewTitle = "Все фотографии";
         }
 
         public override void OnSelectItem(Photo item)

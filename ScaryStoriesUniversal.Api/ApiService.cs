@@ -13,6 +13,10 @@ namespace ScaryStoriesUniversal.Api
 {
     public class ApiService : IApiService
     {
+        public delegate void ErrorHandled(Exception e);
+        public event ErrorHandled OnErrorHandled;
+
+
         private MobileServiceClient _serviceClient;
         private IMobileServiceTable<Story> _storyTable;
         private IMobileServiceTable<Category> _categoryTable;
@@ -42,69 +46,185 @@ namespace ScaryStoriesUniversal.Api
             get { return _serviceClient; }
         }
 
+        private void CallExceptionHandler(Exception e)
+        {
+            if (OnErrorHandled != null)
+            {
+                OnErrorHandled(e);
+            }
+        }
+
         public  async Task<IEnumerable<Story>> GetStories(int limit, int offset)
         {
-            return await _storyTable.OrderBy(x => x.CreatedAt).Skip(offset).Take(limit).ToCollectionAsync();
+            try
+            {
+                return await _storyTable.OrderBy(x => x.CreatedAt).Skip(offset).Take(limit).ToCollectionAsync();
+            }
+            catch (Exception e)
+            {
+               CallExceptionHandler(e);
+               return null;
+            }
         }
 
         public async Task<IEnumerable<Story>> FindStories(string search,int limit, int offset)
         {
-            return await _storyTable.OrderBy(x => x.CreatedAt).Where(x=>x.Name.Contains(search)).Skip(offset).Take(limit).ToCollectionAsync();
+            try
+            {
+                return await _storyTable.OrderBy(x => x.CreatedAt).Where(x => x.Name.Contains(search)).Skip(offset).Take(limit).ToCollectionAsync();
+            }
+            catch (Exception e)
+            {
+                CallExceptionHandler(e);
+                return null;
+            }
+
+            
         }
 
         public async Task<IEnumerable<Story>> GetByCategory(string categoryId,int limit, int offset)
         {
-            return await _storyTable.Where(x => x.CategoryId.ToString() == categoryId.ToString()).OrderBy(x => x.CreatedAt).Take(limit).Skip(offset).ToCollectionAsync();
+            try
+            {
+                return await _storyTable.Where(x => x.CategoryId.ToString() == categoryId.ToString()).OrderBy(x => x.CreatedAt).Take(limit).Skip(offset).ToCollectionAsync();
+            }
+
+            catch (Exception e)
+            {
+                CallExceptionHandler(e);
+                return null;
+            }
         }
 
         public async Task<IEnumerable<Story>> GetBySourceId(string sourceId, int limit, int offset)
         {
-            return await _storyTable.OrderBy(x => x.CreatedAt).Where(x => x.SourceId == sourceId).Skip(offset).Take(limit).IncludeTotalCount().ToCollectionAsync(); ;
+            try
+            {
+                return await _storyTable.OrderBy(x => x.CreatedAt).Where(x => x.SourceId == sourceId).Skip(offset).Take(limit).IncludeTotalCount().ToCollectionAsync(); ;
+
+            }
+            catch (Exception e)
+            {
+                CallExceptionHandler(e);
+                return null;
+            }
         }
 
         public async Task<IEnumerable<Video>> GetVideosBySourceId(string sourceId, int limit, int offset)
         {
-            return await _videoTable.OrderBy(x => x.CreatedAt).Where(x => x.SourceId == sourceId).Skip(offset).Take(limit).IncludeTotalCount().ToCollectionAsync(); 
+            try
+            {
+                return await _videoTable.OrderBy(x => x.CreatedAt).Where(x => x.SourceId == sourceId).Skip(offset).Take(limit).IncludeTotalCount().ToCollectionAsync(); 
+            }
+            catch (Exception e)
+            {
+                CallExceptionHandler(e);
+                return null;
+            }
         }
 
         public Task<Story> GetStory(string storyId)
         {
-            return  _storyTable.LookupAsync(storyId);
+            try
+            {
+                return _storyTable.LookupAsync(storyId);
+            }
+            catch (Exception e)
+            {
+                CallExceptionHandler(e);
+                return null;
+            }
         }
 
         public async Task<IEnumerable<Category>> GetCategories()
         {
-            return await _categoryTable.Take(100).ToListAsync();
+            try
+            {
+                return await _categoryTable.Take(100).ToListAsync();
+            }
+            catch (Exception e)
+            {
+                CallExceptionHandler(e);
+                return null;
+            }
         }
 
         public async Task<IEnumerable<Source>> GetSources(int limit, int offset)
         {
-            return await _sourceTable.OrderBy(x => x.CreatedAt).Skip(offset).Take(limit).ToCollectionAsync();
-
+            try
+            {
+                return await _sourceTable.OrderBy(x => x.CreatedAt).Skip(offset).Take(limit).ToCollectionAsync();
+            }
+            catch (Exception e)
+            {
+                CallExceptionHandler(e);
+                return null;
+            }
         }
 
         public async Task<IEnumerable<Photo>> GetPhotos(int limit, int offset)
         {
-            return await _photoTable.OrderBy(x => x.CreatedAt).Skip(offset).Take(limit).ToCollectionAsync();
+            try
+            {
+                return await _photoTable.OrderBy(x => x.CreatedAt).Skip(offset).Take(limit).ToCollectionAsync();
+            }
+            catch (Exception e)
+            {
+                CallExceptionHandler(e);
+                return null;
+            }
         }
         public Task<Photo> GetPhoto(string storyId)
         {
-            return _photoTable.LookupAsync(storyId);
+            try
+            {
+                return _photoTable.LookupAsync(storyId);
+            }
+            catch (Exception e)
+            {
+                CallExceptionHandler(e);
+                return null;
+            }
+            
         }
 
         public async Task<IEnumerable<Video>> GetVideos(int limit, int offset)
         {
-            return await _videoTable.OrderBy(x => x.CreatedAt).Skip(offset).Take(limit).ToCollectionAsync();
+            try
+            {
+                return await _videoTable.OrderBy(x => x.CreatedAt).Skip(offset).Take(limit).ToCollectionAsync();
+            }
+            catch (Exception e)
+            {
+                CallExceptionHandler(e);
+                return null;
+            }
         }
 
         public Task<Video> GetVideo(string videoId)
         {
-            return _videoTable.LookupAsync(videoId);
+            try
+            {
+                return _videoTable.LookupAsync(videoId);
+            }
+            catch (Exception e)
+            {
+                CallExceptionHandler(e);
+                return null;
+            }
         }
 
         public Task<Source> GetSource(string sourceId)
         {
-            return _sourceTable.LookupAsync(sourceId);
+            try
+            {
+                return _sourceTable.LookupAsync(sourceId);
+            }
+            catch (Exception e)
+            {
+                CallExceptionHandler(e);
+                return null;
+            }
         }
 
        

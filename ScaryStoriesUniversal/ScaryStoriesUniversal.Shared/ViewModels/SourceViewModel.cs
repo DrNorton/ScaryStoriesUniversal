@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using Caliburn.Micro;
 using Microsoft.WindowsAzure.MobileServices;
 using ScaryStoriesUniversal.Api;
@@ -19,7 +20,8 @@ namespace ScaryStoriesUniversal.ViewModels
         private readonly StoryListIdsContainer _idsContainer;
         private SourceVideoViewModel _sourceVideoViewModel;
         private Source _source;
-        private long _totalStoriesCount; 
+        private long _totalStoriesCount;
+        private Visibility _photoSectionVisibility=Visibility.Collapsed;
         public string SourceId { get; set; }
 
         public Source Source
@@ -48,7 +50,21 @@ namespace ScaryStoriesUniversal.ViewModels
             set
             {
                 _totalStoriesCount = value;
+                if (value != null && value != 0)
+                {
+                    PhotoSectionVisibility=Visibility.Visible;
+                }
                 base.NotifyOfPropertyChange(()=>TotalStoriesCount);
+            }
+        }
+
+        public Visibility PhotoSectionVisibility
+        {
+            get { return _photoSectionVisibility; }
+            set
+            {
+                _photoSectionVisibility = value;
+                base.NotifyOfPropertyChange(()=>PhotoSectionVisibility);
             }
         }
 
@@ -58,7 +74,7 @@ namespace ScaryStoriesUniversal.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             _idsContainer = idsContainer;
-          
+           
         }
 
        
@@ -114,6 +130,7 @@ namespace ScaryStoriesUniversal.ViewModels
         private readonly INavigationService _navigationService;
         private readonly string _sourceId;
         private long _totalVideosCount;
+        private Visibility _videoSectionVisibility=Visibility.Collapsed;
 
         public SourceVideoViewModel(IApiService apiService,INavigationService navigationService,string sourceId)
             :base(navigationService)
@@ -129,7 +146,21 @@ namespace ScaryStoriesUniversal.ViewModels
             set
             {
                 _totalVideosCount = value;
+                if (value != null && value != 0)
+                {
+                    VideoSectionVisibility = Visibility.Visible;
+                }
                 base.NotifyOfPropertyChange(()=>TotalVideosCount);
+            }
+        }
+
+        public Visibility VideoSectionVisibility
+        {
+            get { return _videoSectionVisibility; }
+            set
+            {
+                _videoSectionVisibility = value;
+                base.NotifyOfPropertyChange(()=>VideoSectionVisibility);
             }
         }
 
@@ -142,7 +173,7 @@ namespace ScaryStoriesUniversal.ViewModels
 
         public override void OnSelectItem(Video item)
         {
-            throw new NotImplementedException();
+            _navigationService.UriFor<VideoViewModel>().WithParam(x => x.VideoId, item.Id.ToString()).Navigate();
         }
     }
 }

@@ -16,20 +16,23 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="WrapModeDataTemplate">
+          <Grid Margin="10">
+                <Border Background="{StaticResource AdditionalColor}" BorderBrush="{StaticResource LightAdditionalColor}" BorderThickness="3"/>
             <Image Source="{Binding Thumb,Converter={StaticResource ByteArrayToImageConverter},Mode=TwoWay}"  Stretch="None" Margin="5"/>
+          </Grid>
         </DataTemplate>
+        <converters:VisibilityReverseConverter x:Name="VisibilityReverseConverter"/>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <controls:BackControl Margin="20"  Canvas.ZIndex="5" VerticalAlignment="Top" />
+        <controls:BackControl Title="{Binding ViewTitle}" />
         <primitives1:RadDataBoundListBox Grid.Row="1"
-            
             IsAsyncBalanceEnabled="True"
-            x:Name="listBox" 
-             SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
+            x:Name="ListBox" 
+            SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
             ItemTemplate="{StaticResource WrapModeDataTemplate}" 
             IncrementalLoadingMode="Auto" 
             ItemsSource="{Binding Items}">
@@ -48,8 +51,19 @@
                 <primitives1:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}"/>
             </primitives1:RadDataBoundListBox.EmptyContent>
             <primitives1:RadDataBoundListBox.VirtualizationStrategyDefinition>
-                <primitives1:WrapVirtualizationStrategyDefinition Orientation="Horizontal"/>
+                <primitives1:DynamicGridVirtualizationStrategyDefinition  StackCount="10"  Orientation="Horizontal"/>
             </primitives1:RadDataBoundListBox.VirtualizationStrategyDefinition>
+            <primitives1:RadDataBoundListBox.ItemLoadingTemplate>
+                <DataTemplate>
+                    <primitives1:RadBusyIndicator Style="{StaticResource RadBusyIndicatorStyle}" IsActive="True" Visibility="{Binding ElementName=ListBox,Path=DataContext.IsLoading,Converter={StaticResource VisibilityReverseConverter}}" Content=""/>
+                </DataTemplate>
+            </primitives1:RadDataBoundListBox.ItemLoadingTemplate>
+            <primitives1:RadDataBoundListBox.ItemContainerStyle>
+                <Style TargetType="primitives1:RadDataBoundListBoxItem">
+                  
+                    <Setter Property="Margin" Value="10"/>
+                </Style>
+            </primitives1:RadDataBoundListBox.ItemContainerStyle>
         </primitives1:RadDataBoundListBox>
     </Grid>
         
