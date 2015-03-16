@@ -12,6 +12,7 @@ using ScaryStoriesUniversal.Api.Entities;
 using ScaryStoriesUniversal.Helpers;
 using ScaryStoriesUniversal.ViewModels.Base;
 using ScaryStoriesUniversal.Views;
+using ScaryStoriesUniversal.Services.Tiles;
 
 namespace ScaryStoriesUniversal.ViewModels
 {
@@ -20,17 +21,18 @@ namespace ScaryStoriesUniversal.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private readonly StoryListIdsContainer _idsContainer;
-  
+        
+
+
         public  AllStoriesViewModel(INavigationService navigationService,IApiService apiService,StoryListIdsContainer idsContainer)
             :base(navigationService)
         {
             _navigationService = navigationService;
             _apiService = apiService;
             _idsContainer = idsContainer;
+       
             base.ViewTitle = "Все истории";
-
         }
-
 
         public void NavigateToFind()
         {
@@ -39,7 +41,8 @@ namespace ScaryStoriesUniversal.ViewModels
 
         public override async Task<IEnumerable<Story>> GetItems(uint count)
         {
-            return await _apiService.GetStories((int)count, _currentEndIndex);
+            var items= await _apiService.GetStories((int)count, _currentEndIndex);
+            return items;
         }
 
         public override void OnSelectItem(Story item)

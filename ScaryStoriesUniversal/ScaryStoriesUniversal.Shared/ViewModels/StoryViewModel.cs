@@ -16,6 +16,7 @@ using ScaryStoriesUniversal.Database.Repositories.Base;
 using ScaryStoriesUniversal.Helpers;
 using ScaryStoriesUniversal.Services;
 using ScaryStoriesUniversal.Services.Settings;
+using ScaryStoriesUniversal.Services.Tiles;
 using ScaryStoriesUniversal.ViewModels.Base;
 using Story = ScaryStoriesUniversal.Api.Entities.Story;
 
@@ -28,6 +29,7 @@ namespace ScaryStoriesUniversal.ViewModels
         private readonly StoryListIdsContainer _idsContainer;
         private readonly IMessageProvider _messageProvider;
         private readonly IFavoriteStoriesRepository _favoriteStoriesRepository;
+        private readonly ITileService _tileService;
         private Story _story;
         private Photo _photo;
         private Visibility _toFavoriteButtonVisible=Visibility.Collapsed;
@@ -68,7 +70,8 @@ namespace ScaryStoriesUniversal.ViewModels
             }
         }
 
-        public StoryViewModel(INavigationService navigationService,IApiService apiService,StoryListIdsContainer idsContainer,IMessageProvider messageProvider,IFavoriteStoriesRepository favoriteStoriesRepository,ISettingsProvider settingsProvider)
+        public StoryViewModel(INavigationService navigationService,IApiService apiService,StoryListIdsContainer idsContainer,IMessageProvider messageProvider,
+            IFavoriteStoriesRepository favoriteStoriesRepository,ISettingsProvider settingsProvider,ITileService tileService)
             :base(navigationService)
         {
             _navigationService = navigationService;
@@ -76,6 +79,7 @@ namespace ScaryStoriesUniversal.ViewModels
             _idsContainer = idsContainer;
             _messageProvider = messageProvider;
             _favoriteStoriesRepository = favoriteStoriesRepository;
+            _tileService = tileService;
             TextSettings=settingsProvider.TextSettings;
             CurrentFont = new FontFamily(TextSettings.Font);
             _speechPlayer=new MediaElement();
@@ -234,6 +238,8 @@ namespace ScaryStoriesUniversal.ViewModels
             Story = await _apiService.GetStory(currentId);
             base.Wait(false);
             Photo = await _apiService.GetPhoto(Story.PhotoId);
+            Story.Thumb = Photo.Image;
+          await _tileService.AddTilesToQueue(Story);
            
            await RefreshAppBarButtons();
         }

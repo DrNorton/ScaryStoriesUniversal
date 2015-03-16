@@ -44,7 +44,12 @@ namespace ScaryStoriesUniversal.ViewModels
             var res=HttpUtilityExtensions.ParseQueryString(new Uri(url).Query);
             var key= res["?v"];
             base.Wait(true);
-            var youtubeUrl = await YouTube.GetVideoUriAsync(key, YouTubeQuality.Quality480P);
+            YouTubeUri youtubeUrl;
+            youtubeUrl=await YouTube.GetVideoUriAsync(key, YouTubeQuality.QualityHigh);
+            if (youtubeUrl == null)
+            {
+                youtubeUrl = await YouTube.GetVideoUriAsync(key, YouTubeQuality.QualityMedium);
+            }
             base.Wait(false);
             return youtubeUrl.Uri.ToString();
         }

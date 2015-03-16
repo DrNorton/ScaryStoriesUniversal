@@ -23,6 +23,7 @@ namespace ScaryStoriesUniversal.Controls
 {
     public sealed partial class StoryVirtualizationListBox : UserControl
     {
+
         public StoryVirtualizationListBox()
         {
             this.InitializeComponent();

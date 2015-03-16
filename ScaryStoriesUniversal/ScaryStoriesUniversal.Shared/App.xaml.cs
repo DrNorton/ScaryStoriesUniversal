@@ -68,7 +68,7 @@ namespace ScaryStoriesUniversal
                 settingsProvider.TextSettings = info;
             }
             _container.RegisterInstance(typeof(ISettingsProvider),"",settingsProvider);
-            _container.RegisterPerRequest(typeof(ITileService),"",typeof(TileService));
+            _container.RegisterInstance(typeof(ITileService),"",new TileService());
            
         }
 

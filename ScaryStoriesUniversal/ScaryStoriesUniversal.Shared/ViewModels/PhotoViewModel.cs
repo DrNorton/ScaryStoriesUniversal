@@ -27,7 +27,7 @@ namespace ScaryStoriesUniversal.ViewModels
         private readonly IApiService _apiService;
         private readonly IEventAggregator _eventAggregator;
         private readonly IPhotoCachingRepository _photoCachingRepository;
-        private readonly ITileService _tileService;
+       
         private Photo _photo;
         public string PhotoId { get; set; }
 
@@ -41,20 +41,20 @@ namespace ScaryStoriesUniversal.ViewModels
             }
         }
 
-        public PhotoViewModel(IApiService apiService,IEventAggregator eventAggregator,IPhotoCachingRepository photoCachingRepository,INavigationService navigationService,ITileService tileService)
+        public PhotoViewModel(IApiService apiService,IEventAggregator eventAggregator,IPhotoCachingRepository photoCachingRepository,INavigationService navigationService)
             :base(navigationService)
         {
             _apiService = apiService;
             _eventAggregator = eventAggregator;
             _photoCachingRepository = photoCachingRepository;
-            _tileService = tileService;
+           
             _eventAggregator.Subscribe(this);
         }
 
         protected async override void OnViewReady(object view)
         {
             await GetPhoto();
-            _tileService.UpdateTile();
+          
             base.OnViewReady(view);
         }
 
