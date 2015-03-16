@@ -21,6 +21,7 @@ using ScaryStoriesUniversal.Database.Repositories.Base;
 using ScaryStoriesUniversal.Helpers;
 using ScaryStoriesUniversal.Services;
 using ScaryStoriesUniversal.Services.Settings;
+using ScaryStoriesUniversal.Services.Tiles;
 using ScaryStoriesUniversal.ViewModels;
 using ScaryStoriesUniversal.Views;
 
@@ -67,6 +68,8 @@ namespace ScaryStoriesUniversal
                 settingsProvider.TextSettings = info;
             }
             _container.RegisterInstance(typeof(ISettingsProvider),"",settingsProvider);
+            _container.RegisterPerRequest(typeof(ITileService),"",typeof(TileService));
+           
         }
 
         private void apiService_OnErrorHandled(Exception e)

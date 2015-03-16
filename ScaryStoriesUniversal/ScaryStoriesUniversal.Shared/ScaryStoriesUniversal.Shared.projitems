@@ -47,6 +47,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\StorageHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\StorageSettingsSaver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\TextInfoSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Tiles\TileService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AllPhotosViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AllStoriesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AllVideosViewModel.cs" />
