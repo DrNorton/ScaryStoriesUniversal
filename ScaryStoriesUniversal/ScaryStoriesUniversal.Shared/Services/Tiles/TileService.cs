@@ -28,10 +28,18 @@ namespace ScaryStoriesUniversal.Services.Tiles
         }
         public async void UpdateTiles(IEnumerable<Story> stories )
         {
-            for (int i = 1; i <=5; i++)
+            try
             {
-                await CreateTile(stories.ElementAt(i), i.ToString());
+                for (int i = 1; i <= 5; i++)
+                {
+                    await CreateTile(stories.ElementAt(i), i.ToString());
+                }
             }
+            catch (Exception e)
+            {
+                
+            }
+           
         }
 
         private async Task CreateTile(Story currentStory, string fileName)

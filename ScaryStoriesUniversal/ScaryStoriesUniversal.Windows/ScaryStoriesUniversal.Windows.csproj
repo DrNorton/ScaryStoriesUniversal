@@ -21,7 +21,7 @@
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <ExpressionBlendVersion>12.0.51020.0</ExpressionBlendVersion>
-    <PackageCertificateThumbprint>A6CFA44329D0A1C21001C10E3085F30629E37620</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>9720F4AD3ECC4F89BDA87460C2CD5A0E63406228</PackageCertificateThumbprint>
     <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -257,10 +257,10 @@
     <SDKReference Include="Microsoft.VCLibs, Version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.WinRT81, Version=3.8.8.3">
+    <SDKReference Include="SQLite.WinRT81, Version=3.8.7">
       <Name>SQLite for Windows Runtime %28Windows 8.1%29</Name>
     </SDKReference>
-    <SDKReference Include="Telerik UI For Windows Universal, Version=2014.3.1203.45">
+    <SDKReference Include="Telerik UI For Windows Universal, Version=2014.3.1024.45">
       <Name>Telerik UI For Windows Universal</Name>
     </SDKReference>
   </ItemGroup>
