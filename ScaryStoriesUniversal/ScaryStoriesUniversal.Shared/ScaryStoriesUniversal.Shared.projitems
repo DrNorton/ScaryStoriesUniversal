@@ -58,6 +58,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PhotoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AllSourcesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RandomStoriesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SourceViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StoryViewModel.cs" />
@@ -75,8 +76,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\FindView.xaml.cs">
       <DependentUpon>FindView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\PhotoView.xaml.cs">
       <DependentUpon>PhotoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\RandomStoriesView.xaml.cs">
+      <DependentUpon>RandomStoriesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
@@ -116,7 +123,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\PhotoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\RandomStoriesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,6 +161,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\favorites.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Images.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\LoadMore.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\random.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Search.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Sources.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\stories.png" />

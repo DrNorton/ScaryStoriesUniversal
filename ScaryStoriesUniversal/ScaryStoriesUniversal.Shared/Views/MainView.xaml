@@ -30,15 +30,12 @@
         <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
     </Page.Resources>
         <Grid x:Name="LayoutRoot" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+            
             <Grid.Background>
                 <ImageBrush  Stretch="Fill" Opacity="0.4" ImageSource="{Binding BackgroundImage.Image,Converter={StaticResource ByteArrayToImageConverter}}"/>
             </Grid.Background>
-        <windowsPhone81:AdMediatorControl x:Name="AdMediator" Id="AdMediator-Id-11BB90C6-D300-4A37-B7ED-52391AA5EAD4"  Grid.Row="0"/>
-            <Hub Grid.Row="1"  Header="Страшные истории" >
+      
+            <Hub  Header="Страшные истории" >
                 <HubSection Header="Меню">
                     <HubSection.HeaderTemplate>
                         <DataTemplate>
@@ -79,7 +76,17 @@
                                         <TextBlock VerticalAlignment="Center" Foreground="White" Grid.Column="1" Text="Источники"/>
                                     </Grid>
                                 </ListBoxItem>
-                                <ListBoxItem  micro:Message.Attach="[Event Tapped] = [Action NavigateToAllPhotos()]"  FontSize="30">
+                            <ListBoxItem  micro:Message.Attach="[Event Tapped] = [Action NavigateToRandom()]"  FontSize="30">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="8*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0"  Source="/Assets/random.png" />
+                                    <TextBlock VerticalAlignment="Center" Foreground="White" Grid.Column="1" Text="Случайные"/>
+                                </Grid>
+                            </ListBoxItem>
+                            <ListBoxItem  micro:Message.Attach="[Event Tapped] = [Action NavigateToAllPhotos()]"  FontSize="30">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="2*"/>

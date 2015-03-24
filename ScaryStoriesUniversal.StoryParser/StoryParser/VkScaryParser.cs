@@ -7,8 +7,9 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using ScaryStories.MobileService.Entity;
+
 using VkNet;
-using VkNet.Enums.Filters;
+
 using VkNet.Model;
 
 namespace StoryParser
@@ -24,7 +25,7 @@ namespace StoryParser
             int appId = 3383873; // указываем id приложения
             string email = "kozak_andrews@mail.ru"; // email для авторизации
             string password = "rianon90"; // пароль
-            Settings settings = Settings.Wall; // уровень доступа к данным
+            var settings = VkNet.Enums.Filters.Settings.Wall; // уровень доступа к данным
 
             var api = new VkApi();
             api.Authorize(appId, email, password, settings); // авторизуемся

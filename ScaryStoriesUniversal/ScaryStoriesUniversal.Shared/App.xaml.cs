@@ -99,6 +99,7 @@ namespace ScaryStoriesUniversal
             _container.PerRequest<AllSourcesViewModel>();
             _container.PerRequest<SourceViewModel>();
             _container.PerRequest<SettingsViewModel>();
+            _container.PerRequest<RandomStoriesViewModel>();
         }
 
         private void InitLocalStore()

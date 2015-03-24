@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="8322DevjatOS.465281BA31D95" Publisher="CN=DFB1CE3D-AFA6-42C2-9548-2B89A6098606" Version="1.1.0.22" />
+  <Identity Name="8322DevjatOS.465281BA31D95" Publisher="CN=DFB1CE3D-AFA6-42C2-9548-2B89A6098606" Version="1.1.0.23" />
   <Properties>
     <DisplayName>Сборник страшных историй</DisplayName>
     <PublisherDisplayName>DevjatOS</PublisherDisplayName>

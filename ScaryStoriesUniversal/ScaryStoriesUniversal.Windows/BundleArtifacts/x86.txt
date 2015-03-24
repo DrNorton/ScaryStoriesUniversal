@@ -1,2 +1,2 @@
-MainPackage=E:\Projects\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.Windows\bin\x86\Release\ScaryStoriesUniversal.Windows_1.1.0.22_Bundle\ScaryStoriesUniversal.Windows_1.1.0.22_x86.appx
-SymbolPackage=E:\Projects\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.Windows\AppPackages\ScaryStoriesUniversal.Windows_1.1.0.22_Test\ScaryStoriesUniversal.Windows_1.1.0.22_x86.appxsym
+MainPackage=E:\Projects\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.Windows\bin\x86\Release\ScaryStoriesUniversal.Windows_1.1.0.23_Bundle\ScaryStoriesUniversal.Windows_1.1.0.23_x86.appx
+SymbolPackage=E:\Projects\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.Windows\AppPackages\ScaryStoriesUniversal.Windows_1.1.0.23_Test\ScaryStoriesUniversal.Windows_1.1.0.23_x86.appxsym

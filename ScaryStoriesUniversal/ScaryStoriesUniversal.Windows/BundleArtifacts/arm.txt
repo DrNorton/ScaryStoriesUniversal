@@ -1,5 +1,5 @@
-MainPackage=E:\Projects\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.Windows\bin\ARM\Release\ScaryStoriesUniversal.Windows_1.1.0.22_Bundle\ScaryStoriesUniversal.Windows_1.1.0.22_ARM.appx
-SymbolPackage=E:\Projects\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.Windows\AppPackages\ScaryStoriesUniversal.Windows_1.1.0.22_Test\ScaryStoriesUniversal.Windows_1.1.0.22_ARM.appxsym
-ResourcePack=E:\Projects\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.Windows\bin\ARM\Release\ScaryStoriesUniversal.Windows_1.1.0.22_Bundle\ScaryStoriesUniversal.Windows_1.1.0.22_language-ru.appx
-ResourcePack=E:\Projects\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.Windows\bin\ARM\Release\ScaryStoriesUniversal.Windows_1.1.0.22_Bundle\ScaryStoriesUniversal.Windows_1.1.0.22_scale-140.appx
-ResourcePack=E:\Projects\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.Windows\bin\ARM\Release\ScaryStoriesUniversal.Windows_1.1.0.22_Bundle\ScaryStoriesUniversal.Windows_1.1.0.22_scale-180.appx
+MainPackage=E:\Projects\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.Windows\bin\ARM\Release\ScaryStoriesUniversal.Windows_1.1.0.23_Bundle\ScaryStoriesUniversal.Windows_1.1.0.23_ARM.appx
+SymbolPackage=E:\Projects\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.Windows\AppPackages\ScaryStoriesUniversal.Windows_1.1.0.23_Test\ScaryStoriesUniversal.Windows_1.1.0.23_ARM.appxsym
+ResourcePack=E:\Projects\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.Windows\bin\ARM\Release\ScaryStoriesUniversal.Windows_1.1.0.23_Bundle\ScaryStoriesUniversal.Windows_1.1.0.23_language-ru.appx
+ResourcePack=E:\Projects\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.Windows\bin\ARM\Release\ScaryStoriesUniversal.Windows_1.1.0.23_Bundle\ScaryStoriesUniversal.Windows_1.1.0.23_scale-140.appx
+ResourcePack=E:\Projects\ScaryStoriesUniversal\ScaryStoriesUniversal\ScaryStoriesUniversal.Windows\bin\ARM\Release\ScaryStoriesUniversal.Windows_1.1.0.23_Bundle\ScaryStoriesUniversal.Windows_1.1.0.23_scale-180.appx

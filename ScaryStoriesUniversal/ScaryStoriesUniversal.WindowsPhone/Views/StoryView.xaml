@@ -24,7 +24,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <primitives1:RadBusyIndicator Grid.RowSpan="6" IsActive="{Binding IsLoading}" Style="{StaticResource RadBusyIndicatorStyle}"/>
-        <windowsPhone81:AdMediatorControl x:Name="AdMediator2" Id="AdMediator-Id-11BB90C8-D300-4A37-B7ED-52391AA5EAD4"  Grid.Row="0"/>
+        <!--<windowsPhone81:AdMediatorControl x:Name="AdMediator2" Id="AdMediator-Id-11BB90C8-D300-4A37-B7ED-52391AA5EAD4"  Grid.Row="0"/>-->
         <controls:BackControl Grid.Row="1" Title="{Binding Story.Name}"/>
         <ScrollViewer Grid.Row="2">
             <Grid >

@@ -124,9 +124,6 @@
     <Compile Include="Views\AllSourcesView.xaml.cs">
       <DependentUpon>AllSourcesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\StoryView.xaml.cs">
       <DependentUpon>StoryView.xaml</DependentUpon>
     </Compile>
@@ -296,10 +293,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AllSourcesView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

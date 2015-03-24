@@ -207,6 +207,11 @@ namespace ScaryStoriesUniversal.ViewModels
             _navigationService.UriFor<AllVideosViewModel>().Navigate();
         }
 
+        public void NavigateToRandom()
+        {
+            _navigationService.UriFor<RandomStoriesViewModel>().Navigate();
+        }
+
         public void Settings()
         {
             _navigationService.UriFor<SettingsViewModel>().Navigate();
